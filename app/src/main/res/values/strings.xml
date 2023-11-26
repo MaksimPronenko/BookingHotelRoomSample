@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">BookingHotelRoomSample</string>
+    <string name="hotel">Отель</string>
+    <string name="to_choosing_room">К выбору номера</string>
+    <string name="choose_room">Выбрать номер</string>
+    <string name="for_tour_with_flight">за тур с перелётом</string>
+    <string name="room_details">Подробно о номере</string>
+    <string name="booking">Бронирование</string>
+    <string name="pay">Оплатить</string>
+    <string name="order_paid">Заказ оплачен</string>
+    <string name="super1">Супер!</string>
 </resources>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/HotelFragment">
+
+    <fragment
+        android:id="@+id/HotelFragment"
+        android:name="home.samples.bookinghotelroomsample.ui.hotel.HotelFragment"
+        tools:layout="@layout/fragment_hotel">
+
+        <action
+            android:id="@+id/action_HotelFragment_to_RoomFragment"
+            app:destination="@id/RoomFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/RoomFragment"
+        android:name="home.samples.bookinghotelroomsample.ui.room.RoomFragment"
+        tools:layout="@layout/fragment_room">
+
+        <action
+            android:id="@+id/action_RoomFragment_to_BookingFragment"
+            app:destination="@id/BookingFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/BookingFragment"
+        android:name="home.samples.bookinghotelroomsample.ui.booking.BookingFragment"
+        tools:layout="@layout/fragment_booking">
+
+        <action
+            android:id="@+id/action_BookingFragment_to_PaymentFragment"
+            app:destination="@id/PaymentFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/PaymentFragment"
+        android:name="home.samples.bookinghotelroomsample.ui.payment.PaymentFragment"
+        tools:layout="@layout/fragment_payment">
+
+        <action
+            android:id="@+id/action_PaymentFragment_to_HotelFragment"
+            app:destination="@id/HotelFragment"
+            app:popUpTo="@+id/HotelFragment"
+            app:popUpToInclusive="true" />
+
+    </fragment>
+
+</navigation>
