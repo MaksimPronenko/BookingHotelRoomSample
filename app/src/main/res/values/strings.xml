@@ -1,6 +1,13 @@
 <resources>
     <string name="app_name">BookingHotelRoomSample</string>
     <string name="hotel">Отель</string>
+    <string name="excellent">Превосходно</string>
+    <string name="from">от</string>
+    <string name="about_hotel">Об отеле</string>
+    <string name="conveniences">Удобства</string>
+    <string name="what_is_included">Что включено</string>
+    <string name="what_is_not_included">Что не включено</string>
+    <string name="the_most_necessary">Самое необходимое</string>
     <string name="to_choosing_room">К выбору номера</string>
     <string name="choose_room">Выбрать номер</string>
     <string name="for_tour_with_flight">за тур с перелётом</string>
