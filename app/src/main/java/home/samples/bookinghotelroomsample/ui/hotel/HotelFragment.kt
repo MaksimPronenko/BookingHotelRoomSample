@@ -1,6 +1,7 @@
 package home.samples.bookinghotelroomsample.ui.hotel
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,16 +15,17 @@ import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import home.samples.bookinghotelroomsample.R
 import home.samples.bookinghotelroomsample.databinding.FragmentHotelBinding
+import home.samples.bookinghotelroomsample.ui.ImageAdapter
 import home.samples.bookinghotelroomsample.ui.ViewModelState
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+private const val TAG = "HotelFragment"
+
 @AndroidEntryPoint
 class HotelFragment : Fragment() {
-
-//    companion object {
-//        fun newInstance() = HotelFragment()
-//    }
 
     @Inject
     lateinit var hotelViewModelFactory: HotelViewModelFactory
@@ -31,6 +33,8 @@ class HotelFragment : Fragment() {
 
     private var _binding: FragmentHotelBinding? = null
     private val binding get() = _binding!!
+
+    private val hotelImageAdapter = ImageAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,7 +47,10 @@ class HotelFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        Log.d(TAG, "Функция onViewCreated() запущена" )
         viewModel.loadHotelData()
+
+        binding.hotelImagePager.adapter = hotelImageAdapter
 
         binding.toChoosingRoom.setOnClickListener {
             findNavController().navigate(R.id.action_HotelFragment_to_RoomFragment)
@@ -66,6 +73,11 @@ class HotelFragment : Fragment() {
                             ViewModelState.Loaded -> {
                                 binding.progress.isGone = true
                                 binding.scrollView.isGone = false
+
+                                viewModel.hotelImages.onEach {
+                                    Log.d(TAG, it.toString())
+                                    hotelImageAdapter.setData(it)
+                                }.launchIn(viewLifecycleOwner.lifecycleScope)
 
 //                                Glide
 //                                    .with(binding.poster.context)

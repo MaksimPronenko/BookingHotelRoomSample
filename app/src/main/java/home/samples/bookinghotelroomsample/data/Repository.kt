@@ -1,8 +1,11 @@
 package home.samples.bookinghotelroomsample.data
 
+import android.util.Log
 import home.samples.bookinghotelroomsample.api.retrofit
 import home.samples.bookinghotelroomsample.models.Hotel
 import javax.inject.Inject
+
+private const val TAG = "HotelRepository"
 
 class Repository @Inject constructor() {
     // Если из API приходит null или возникает исключение, то функиции возвращают null.
@@ -13,9 +16,11 @@ class Repository @Inject constructor() {
             retrofit.getHotel()
         }.fold(
             onSuccess = {
+                Log.d(TAG, it.toString())
                 return it
             },
             onFailure = {
+                Log.d(TAG, "Failure")
                 return null
             }
         )
