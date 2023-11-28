@@ -44,14 +44,14 @@ class HotelViewModel(
 
             if (hotelData == null) _state.value = ViewModelState.Error
             else {
-//                name = hotelData.name
-//                adress = hotelData.adress
-//                minimalPrice = hotelData.minimal_price
-//                priceForIt = hotelData.price_for_it
-//                rating = hotelData.rating
-//                imageUrls = hotelData.image_urls
-//                description = hotelData.about_the_hotel.description
-//                peculiarities = hotelData.about_the_hotel.peculiarities
+                name = hotelData.name
+                adress = hotelData.adress
+                minimalPrice = hotelData.minimal_price
+                priceForIt = hotelData.price_for_it
+                rating = hotelData.rating
+                imageUrls = hotelData.image_urls
+                description = hotelData.about_the_hotel.description
+                peculiarities = hotelData.about_the_hotel.peculiarities
 
                 _hotelImages.value = imageUrls.orEmpty()
 
