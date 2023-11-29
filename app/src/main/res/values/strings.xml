@@ -2,6 +2,10 @@
     <string name="app_name">BookingHotelRoomSample</string>
     <string name="hotel">Отель</string>
     <string name="excellent">Превосходно</string>
+    <string name="great">Отлично</string>
+    <string name="good">Хорошо</string>
+    <string name="satisfactory">Удовлетворительно</string>
+    <string name="minimum_comfort_level">Минимальный уровень комфорта</string>
     <string name="from">от</string>
     <string name="about_hotel">Об отеле</string>
     <string name="conveniences">Удобства</string>

@@ -60,6 +60,38 @@
                 app:layout_constraintTop_toBottomOf="@id/hotel"
                 tools:listitem="@layout/pager_hotel_image_item" />
 
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/stars_field"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                android:background="@drawable/stars_background"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/hotel_image_pager">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/star_yellow">
+                </ImageView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/excellent"
+                    android:layout_marginStart="2dp"
+                    android:textColor="@color/yellow"
+                    android:fontFamily="@font/SF_Pro_Display_Semibold"
+                    android:textSize="16sp">
+                </TextView>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/to_choosing_room"
                 android:layout_width="match_parent"
@@ -72,10 +104,10 @@
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="16sp"
-                app:layout_constraintTop_toBottomOf="@id/hotel_image_pager"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/stars_field" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
