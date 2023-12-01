@@ -1,5 +1,6 @@
 package home.samples.bookinghotelroomsample.di
 
+import android.content.Context
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,7 +20,7 @@ import home.samples.bookinghotelroomsample.ui.room.RoomViewModelFactory
 class PresentationModule {
     @Provides
     fun provideHotelViewModel(
-        repository: Repository,
+        repository: Repository
     ): HotelViewModel {
         return HotelViewModel(
             repository

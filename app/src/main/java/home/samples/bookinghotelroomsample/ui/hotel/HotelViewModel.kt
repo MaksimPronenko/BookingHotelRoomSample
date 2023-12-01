@@ -1,8 +1,12 @@
 package home.samples.bookinghotelroomsample.ui.hotel
 
+import android.content.Context
+import android.text.Html
 import android.util.Log
+import androidx.core.text.HtmlCompat
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import home.samples.bookinghotelroomsample.R
 import home.samples.bookinghotelroomsample.data.Repository
 import home.samples.bookinghotelroomsample.models.Hotel
 import home.samples.bookinghotelroomsample.ui.ViewModelState
@@ -22,11 +26,11 @@ class HotelViewModel(
     val state = _state.asStateFlow()
 
     var name: String? = null
-    var adress: String? = null
-    var minimalPrice: Int? = null
+    var address: String? = null
+    private var minimalPrice: Int? = null
     var priceForIt: String? = null
-    var rating: Int? = null
-    var imageUrls: List<String>? = null
+    private var rating: Int? = null
+    private var imageUrls: List<String>? = null
     var description: String? = null
     var peculiarities: List<String>? = null
 
@@ -45,7 +49,7 @@ class HotelViewModel(
             if (hotelData == null) _state.value = ViewModelState.Error
             else {
                 name = hotelData.name
-                adress = hotelData.adress
+                address = hotelData.adress
                 minimalPrice = hotelData.minimal_price
                 priceForIt = hotelData.price_for_it
                 rating = hotelData.rating
@@ -59,5 +63,20 @@ class HotelViewModel(
                 Log.d(TAG, "ViewModelState.Loaded" )
             }
         }
+    }
+
+    fun getRatingText(context: Context): String {
+        return when(rating) {
+            1 -> "$rating " + context.getString(R.string.minimum_comfort_level)
+            2 -> "$rating " + context.getString(R.string.satisfactory)
+            3 -> "$rating " + context.getString(R.string.good)
+            4 -> "$rating " + context.getString(R.string.great)
+            5 -> "$rating " + context.getString(R.string.excellent)
+            else -> context.getString(R.string.rating_unknown)
+        }
+    }
+
+    fun getMinimalPriceText(context: Context): String {
+        return context.getString(R.string.from) + minimalPrice.toString() + Html.fromHtml(" &#x20bd", HtmlCompat.FROM_HTML_MODE_LEGACY)
     }
 }

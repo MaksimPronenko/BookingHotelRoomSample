@@ -4,5 +4,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="blue">#FF0D72FF</color>
     <color name="bright_yellow">#33FFC700</color>
-    FF<color name="yellow">#FFFFA800</color>
+    <color name="yellow">#FFFFA800</color>
+    <color name="grey_text">#FF828796</color>
+    <color name="grey_screen_background">#FFF6F6F9</color>
 </resources>

@@ -79,6 +79,12 @@ class HotelFragment : Fragment() {
                                     hotelImageAdapter.setData(it)
                                 }.launchIn(viewLifecycleOwner.lifecycleScope)
 
+                                binding.ratingText.text = viewModel.getRatingText(requireContext())
+                                binding.hotelName.text = viewModel.name
+                                binding.hotelAddress.text = viewModel.address
+                                binding.minimalPrice.text = viewModel.getMinimalPriceText(requireContext())
+                                binding.priceForIt.text = viewModel.priceForIt
+
 //                                Glide
 //                                    .with(binding.poster.context)
 //                                    .load(viewModel.poster)
