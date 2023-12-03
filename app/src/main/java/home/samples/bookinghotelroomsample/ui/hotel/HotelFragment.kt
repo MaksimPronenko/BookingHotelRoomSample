@@ -1,6 +1,8 @@
 package home.samples.bookinghotelroomsample.ui.hotel
 
+import android.content.Context
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -12,15 +14,19 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.chip.Chip
+import com.google.android.material.shape.ShapeAppearanceModel
 import dagger.hilt.android.AndroidEntryPoint
 import home.samples.bookinghotelroomsample.R
 import home.samples.bookinghotelroomsample.databinding.FragmentHotelBinding
 import home.samples.bookinghotelroomsample.ui.ImageAdapter
 import home.samples.bookinghotelroomsample.ui.ViewModelState
+import home.samples.bookinghotelroomsample.utils.convertDpToPixel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+
 
 private const val TAG = "HotelFragment"
 
@@ -47,7 +53,7 @@ class HotelFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        Log.d(TAG, "Функция onViewCreated() запущена" )
+        Log.d(TAG, "Функция onViewCreated() запущена")
         viewModel.loadHotelData()
 
         binding.hotelImagePager.adapter = hotelImageAdapter
@@ -83,7 +89,14 @@ class HotelFragment : Fragment() {
                                 binding.hotelName.text = viewModel.name
                                 binding.hotelAddress.text = viewModel.address
                                 binding.minimalPrice.text = viewModel.getMinimalPriceText(requireContext())
-                                binding.priceForIt.text = viewModel.priceForIt
+                                binding.priceForIt.text = viewModel.getPriceForIt()
+
+                                viewModel.peculiarities?.forEach {
+                                    Log.d(TAG, "Создаём чип с текстом: $it")
+                                    binding.peculiaritiesGroup.addView(createPeculiarityChip(requireContext(), it))
+                                }
+
+                                binding.description.text = viewModel.description
 
 //                                Glide
 //                                    .with(binding.poster.context)
@@ -120,6 +133,20 @@ class HotelFragment : Fragment() {
                         }
                     }
             }
+        }
+    }
+
+    private fun createPeculiarityChip(context: Context, peculiarity: String): Chip {
+        return Chip(context).apply {
+            text = peculiarity
+            setChipBackgroundColorResource(R.color.grey_peculiarity_chip)
+            isCloseIconVisible = false
+            isClickable = false
+            chipStrokeWidth = 0F
+            shapeAppearanceModel = ShapeAppearanceModel().withCornerSize(convertDpToPixel(5F, context))
+            chipStartPadding = convertDpToPixel(10F, context)
+            chipEndPadding = convertDpToPixel(10F, context)
+            setTextAppearance(R.style.ChipTextAppearance)
         }
     }
 }

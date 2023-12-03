@@ -7,11 +7,11 @@
     <string name="satisfactory">Удовлетворительно</string>
     <string name="minimum_comfort_level">Минимальный уровень комфорта</string>
     <string name="rating_unknown">Рейтинг неизвестен</string>
-    <string name="from">от </string>
+    <string name="from">от</string>
     <string name="about_hotel">Об отеле</string>
     <string name="conveniences">Удобства</string>
-    <string name="what_is_included">Что включено</string>
-    <string name="what_is_not_included">Что не включено</string>
+    <string name="included">Что включено</string>
+    <string name="not_included">Что не включено</string>
     <string name="the_most_necessary">Самое необходимое</string>
     <string name="to_choosing_room">К выбору номера</string>
     <string name="choose_room">Выбрать номер</string>

@@ -108,49 +108,52 @@
                     android:textSize="22sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/stars_field" />
+                    app:layout_constraintTop_toBottomOf="@id/stars_field"
+                    tools:text="@tools:sample/cities" />
 
-                <TextView
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/hotel_address"
+                    style="@style/ButtonTransparentBorderlessTextBlueHeight17"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="16dp"
                     android:layout_marginTop="8dp"
-                    android:fontFamily="@font/sf_pro_display_semibold"
-                    android:gravity="start"
-                    android:textColor="@color/blue"
-                    android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/hotel_name" />
+                    app:layout_constraintTop_toBottomOf="@id/hotel_name"
+                    tools:ignore="TouchTargetSizeCheck"
+                    tools:text="@tools:sample/cities" />
 
                 <TextView
                     android:id="@+id/minimal_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
                     android:layout_marginVertical="16dp"
+                    android:layout_marginStart="16dp"
                     android:fontFamily="@font/sf_pro_display_semibold"
                     android:gravity="start"
                     android:textColor="@color/black"
                     android:textSize="30sp"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/hotel_address" />
+                    app:layout_constraintTop_toBottomOf="@id/hotel_address"
+                    tools:text="@tools:sample/us_zipcodes" />
 
                 <TextView
                     android:id="@+id/price_for_it"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="16dp"
                     android:fontFamily="@font/sf_pro_display_regular"
                     android:gravity="start"
+                    android:paddingBottom="3dp"
                     android:textColor="@color/grey_text"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="@id/minimal_price"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/minimal_price" />
+                    app:layout_constraintStart_toEndOf="@id/minimal_price"
+                    tools:text="@tools:sample/cities" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -169,12 +172,187 @@
                     android:layout_marginTop="16dp"
                     android:fontFamily="@font/sf_pro_display_semibold"
                     android:gravity="start"
+                    android:text="@string/about_hotel"
                     android:textColor="@color/black"
                     android:textSize="22sp"
-                    android:text="@string/about_hotel"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/peculiarities_group"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="8dp"
+                    app:chipSpacingHorizontal="8dp"
+                    app:chipSpacingVertical="-8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/about_hotel"
+                    app:singleLine="false">
+                </com.google.android.material.chip.ChipGroup>
+
+                <TextView
+                    android:id="@+id/description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/sf_pro_display_regular"
+                    android:singleLine="false"
+                    android:textColor="@color/black_90"
+                    android:textSize="16sp"
+                    tools:text="@tools:sample/lorem/random"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/peculiarities_group" />
+
+                <TextView
+                    android:id="@+id/conveniences_top_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="36dp"
+                    android:fontFamily="@font/sf_pro_display_semibold"
+                    android:textColor="@color/dark_grey_text"
+                    android:textSize="16sp"
+                    android:text="@string/conveniences"
+                    app:layout_constraintEnd_toEndOf="@id/conveniences"
+                    app:layout_constraintStart_toStartOf="@id/conveniences"
+                    app:layout_constraintTop_toTopOf="@id/conveniences" />
+
+                <TextView
+                    android:id="@+id/conveniences_bottom_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="36dp"
+                    android:fontFamily="@font/sf_pro_display_semibold"
+                    android:textColor="@color/grey_text"
+                    android:textSize="14sp"
+                    android:text="@string/the_most_necessary"
+                    app:layout_constraintEnd_toEndOf="@id/conveniences"
+                    app:layout_constraintStart_toStartOf="@id/conveniences"
+                    app:layout_constraintBottom_toBottomOf="@id/conveniences" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/conveniences"
+                    style="@style/ButtonTransparentBorderlessHeight38"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="31dp"
+                    android:layout_marginTop="31dp"
+                    android:drawableStart="@drawable/emoji_happy"
+                    android:drawableEnd="@drawable/arrow_right"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/description"
+                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                
+                <FrameLayout
+                    android:id="@+id/line_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="69dp"
+                    android:layout_marginEnd="31dp"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/conveniences"
+                    android:background="@color/grey_text" />
+
+                <TextView
+                    android:id="@+id/included_top_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="36dp"
+                    android:fontFamily="@font/sf_pro_display_semibold"
+                    android:textColor="@color/dark_grey_text"
+                    android:textSize="16sp"
+                    android:text="@string/included"
+                    app:layout_constraintEnd_toEndOf="@id/included"
+                    app:layout_constraintStart_toStartOf="@id/included"
+                    app:layout_constraintTop_toTopOf="@id/included" />
+
+                <TextView
+                    android:id="@+id/included_bottom_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="36dp"
+                    android:fontFamily="@font/sf_pro_display_semibold"
+                    android:textColor="@color/grey_text"
+                    android:textSize="14sp"
+                    android:text="@string/the_most_necessary"
+                    app:layout_constraintEnd_toEndOf="@id/included"
+                    app:layout_constraintStart_toStartOf="@id/included"
+                    app:layout_constraintBottom_toBottomOf="@id/included" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/included"
+                    style="@style/ButtonTransparentBorderlessHeight38"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="31dp"
+                    android:layout_marginTop="10dp"
+                    android:drawableStart="@drawable/tick_square"
+                    android:drawableEnd="@drawable/arrow_right"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/line_1"
+                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+                <FrameLayout
+                    android:id="@+id/line_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="69dp"
+                    android:layout_marginEnd="31dp"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/included"
+                    android:background="@color/grey_text" />
+
+                <TextView
+                    android:id="@+id/not_included_top_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="36dp"
+                    android:fontFamily="@font/sf_pro_display_semibold"
+                    android:textColor="@color/dark_grey_text"
+                    android:textSize="16sp"
+                    android:text="@string/not_included"
+                    app:layout_constraintEnd_toEndOf="@id/not_included"
+                    app:layout_constraintStart_toStartOf="@id/not_included"
+                    app:layout_constraintTop_toTopOf="@id/not_included" />
+
+                <TextView
+                    android:id="@+id/not_included_bottom_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="36dp"
+                    android:fontFamily="@font/sf_pro_display_semibold"
+                    android:textColor="@color/grey_text"
+                    android:textSize="14sp"
+                    android:text="@string/the_most_necessary"
+                    app:layout_constraintEnd_toEndOf="@id/not_included"
+                    app:layout_constraintStart_toStartOf="@id/not_included"
+                    app:layout_constraintBottom_toBottomOf="@id/not_included" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/not_included"
+                    style="@style/ButtonTransparentBorderlessHeight38"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="31dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="31dp"
+                    android:drawableStart="@drawable/tick_square"
+                    android:drawableEnd="@drawable/arrow_right"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/line_2"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -192,11 +370,11 @@
                     android:layout_marginTop="12dp"
                     android:layout_marginBottom="28dp"
                     android:background="@drawable/button_blue_background"
+                    android:fontFamily="@font/sf_pro_display_semibold"
                     android:padding="15dp"
                     android:text="@string/to_choosing_room"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
-                    android:fontFamily="@font/sf_pro_display_semibold"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"

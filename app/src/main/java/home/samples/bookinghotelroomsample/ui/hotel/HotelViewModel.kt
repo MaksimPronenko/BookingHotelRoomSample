@@ -9,6 +9,7 @@ import androidx.lifecycle.viewModelScope
 import home.samples.bookinghotelroomsample.R
 import home.samples.bookinghotelroomsample.data.Repository
 import home.samples.bookinghotelroomsample.models.Hotel
+import home.samples.bookinghotelroomsample.models.RoomsList
 import home.samples.bookinghotelroomsample.ui.ViewModelState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -28,7 +29,7 @@ class HotelViewModel(
     var name: String? = null
     var address: String? = null
     private var minimalPrice: Int? = null
-    var priceForIt: String? = null
+    private var priceForIt: String? = null
     private var rating: Int? = null
     private var imageUrls: List<String>? = null
     var description: String? = null
@@ -44,7 +45,9 @@ class HotelViewModel(
             Log.d(TAG, "ViewModelState.Loading" )
 
             val hotelData: Hotel? = repository.getHotel()
+//            val roomsListData: RoomsList? = repository.getRoomsList() // Тест
             Log.d(TAG, hotelData.toString())
+//            Log.d(TAG, roomsListData.toString()) // Тест
 
             if (hotelData == null) _state.value = ViewModelState.Error
             else {
@@ -77,6 +80,8 @@ class HotelViewModel(
     }
 
     fun getMinimalPriceText(context: Context): String {
-        return context.getString(R.string.from) + minimalPrice.toString() + Html.fromHtml(" &#x20bd", HtmlCompat.FROM_HTML_MODE_LEGACY)
+        return context.getString(R.string.from) + " $minimalPrice " + Html.fromHtml("&#x20bd", HtmlCompat.FROM_HTML_MODE_LEGACY)
     }
+
+    fun getPriceForIt() = if(priceForIt != null) priceForIt!!.lowercase() else null
 }
