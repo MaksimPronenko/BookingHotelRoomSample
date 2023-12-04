@@ -4,6 +4,7 @@
     <color name="black_90">#E5000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="blue">#FF0D72FF</color>
+    <color name="blue_light">#1A0D72FF</color>
     <color name="bright_yellow">#33FFC700</color>
     <color name="yellow">#FFFFA800</color>
     <color name="dark_grey_text">#FF2C3035</color>

@@ -45,9 +45,7 @@ class HotelViewModel(
             Log.d(TAG, "ViewModelState.Loading" )
 
             val hotelData: Hotel? = repository.getHotel()
-//            val roomsListData: RoomsList? = repository.getRoomsList() // Тест
             Log.d(TAG, hotelData.toString())
-//            Log.d(TAG, roomsListData.toString()) // Тест
 
             if (hotelData == null) _state.value = ViewModelState.Error
             else {

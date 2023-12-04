@@ -2,7 +2,6 @@ package home.samples.bookinghotelroomsample.ui.hotel
 
 import android.content.Context
 import android.os.Bundle
-import android.util.DisplayMetrics
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -26,7 +25,6 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-
 
 private const val TAG = "HotelFragment"
 
@@ -97,38 +95,11 @@ class HotelFragment : Fragment() {
                                 }
 
                                 binding.description.text = viewModel.description
-
-//                                Glide
-//                                    .with(binding.poster.context)
-//                                    .load(viewModel.poster)
-//                                    .into(binding.poster)
-//                                binding.ratingAndName.text = viewModel.getRatingAndNameString()
-//                                binding.yearAndGenres.text = viewModel.getYearAndGenresString()
-//                                binding.countriesAndLengthAndAgeLimit.text =
-//                                    viewModel.getCountriesAndLengthAndAgeLimitString()
-//                                if (viewModel.shortDescription != null)
-//                                    binding.shortDescription.text =
-//                                        if (viewModel.shortDescriptionCollapsed)
-//                                            cutText(viewModel.shortDescription!!)
-//                                        else viewModel.shortDescription
-//                                else {
-//                                    binding.shortDescription.isGone = true
-//                                    binding.blankLineBetweenTextFields.isGone = true
-//                                }
-//                                if (viewModel.description != null)
-//                                    binding.description.text =
-//                                        if (viewModel.descriptionCollapsed) cutText(viewModel.description!!)
-//                                        else viewModel.description
-//                                else {
-//                                    binding.description.isGone = true
-//                                    binding.blankLineBetweenTextFields.isGone = true
-//                                }
                             }
 
                             ViewModelState.Error -> {
                                 binding.scrollView.isGone = true
                                 binding.progress.isGone = true
-//                                findNavController().navigate(R.id.action_FilmFragment_to_ErrorBottomFragment)
                             }
                         }
                     }

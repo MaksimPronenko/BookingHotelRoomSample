@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="ButtonTransparentBorderlessTextBlueHeight17" parent="Widget.AppCompat.Button.Borderless">
-        <item name="android:background">@color/transparent</item>
+        <item name="android:backgroundTint">@color/transparent</item>
         <item name="android:minHeight">17dp</item>
         <item name="android:strokeWidth">0</item>
         <item name="android:fontFamily">@font/sf_pro_display_semibold</item>
@@ -12,8 +12,31 @@
     </style>
 
     <style name="ButtonTransparentBorderlessHeight38" parent="Widget.AppCompat.Button.Borderless">
-        <item name="android:background">@color/transparent</item>
+        <item name="android:backgroundTint">@color/transparent</item>
         <item name="android:minHeight">38dp</item>
         <item name="android:strokeWidth">0</item>
+    </style>
+
+    <style name="ButtonBlueBorderlessHeight48" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:backgroundTint">@color/blue</item>
+        <item name="android:minHeight">48dp</item>
+        <item name="android:strokeWidth">0</item>
+        <item name="android:fontFamily">@font/sf_pro_display_semibold</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="ButtonLightBlueBorderlessHeight29" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:backgroundTint">@color/blue_light</item>
+        <item name="android:minHeight">29dp</item>
+        <item name="android:strokeWidth">0</item>
+        <item name="android:fontFamily">@font/sf_pro_display_semibold</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:gravity">start|center_vertical</item>
+        <item name="android:drawableRight">@drawable/arrow_right</item>
+        <item name="android:drawableTint">@color/blue</item>
+        <item name="android:textColor">@color/blue</item>
     </style>
 </resources>
