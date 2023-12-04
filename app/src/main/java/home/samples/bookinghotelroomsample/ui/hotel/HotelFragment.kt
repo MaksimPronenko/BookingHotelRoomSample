@@ -1,6 +1,5 @@
 package home.samples.bookinghotelroomsample.ui.hotel
 
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -13,14 +12,13 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
-import com.google.android.material.chip.Chip
-import com.google.android.material.shape.ShapeAppearanceModel
 import dagger.hilt.android.AndroidEntryPoint
 import home.samples.bookinghotelroomsample.R
 import home.samples.bookinghotelroomsample.databinding.FragmentHotelBinding
 import home.samples.bookinghotelroomsample.ui.ImageAdapter
 import home.samples.bookinghotelroomsample.ui.ViewModelState
-import home.samples.bookinghotelroomsample.utils.convertDpToPixel
+import home.samples.bookinghotelroomsample.utils.ARG_HOTEL_NAME
+import home.samples.bookinghotelroomsample.utils.Utils
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
@@ -57,7 +55,14 @@ class HotelFragment : Fragment() {
         binding.hotelImagePager.adapter = hotelImageAdapter
 
         binding.toChoosingRoom.setOnClickListener {
-            findNavController().navigate(R.id.action_HotelFragment_to_RoomFragment)
+            val bundle =
+                Bundle().apply {
+                    putString(
+                        ARG_HOTEL_NAME,
+                        viewModel.name
+                    )
+                }
+            findNavController().navigate(R.id.action_HotelFragment_to_RoomFragment, bundle)
         }
 
         statesProcessing()
@@ -91,7 +96,7 @@ class HotelFragment : Fragment() {
 
                                 viewModel.peculiarities?.forEach {
                                     Log.d(TAG, "Создаём чип с текстом: $it")
-                                    binding.peculiaritiesGroup.addView(createPeculiarityChip(requireContext(), it))
+                                    binding.peculiaritiesGroup.addView(Utils.createPeculiarityChip(requireContext(), it))
                                 }
 
                                 binding.description.text = viewModel.description
@@ -104,20 +109,6 @@ class HotelFragment : Fragment() {
                         }
                     }
             }
-        }
-    }
-
-    private fun createPeculiarityChip(context: Context, peculiarity: String): Chip {
-        return Chip(context).apply {
-            text = peculiarity
-            setChipBackgroundColorResource(R.color.grey_peculiarity_chip)
-            isCloseIconVisible = false
-            isClickable = false
-            chipStrokeWidth = 0F
-            shapeAppearanceModel = ShapeAppearanceModel().withCornerSize(convertDpToPixel(5F, context))
-            chipStartPadding = convertDpToPixel(10F, context)
-            chipEndPadding = convertDpToPixel(10F, context)
-            setTextAppearance(R.style.ChipTextAppearance)
         }
     }
 }

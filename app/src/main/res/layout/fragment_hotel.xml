@@ -192,8 +192,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/about_hotel"
-                    app:singleLine="false">
-                </com.google.android.material.chip.ChipGroup>
+                    app:singleLine="false"></com.google.android.material.chip.ChipGroup>
 
                 <TextView
                     android:id="@+id/description"
@@ -205,11 +204,11 @@
                     android:singleLine="false"
                     android:textColor="@color/black_90"
                     android:textSize="16sp"
-                    tools:text="@tools:sample/lorem/random"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/peculiarities_group"
-                    tools:ignore="VisualLintLongText" />
+                    tools:ignore="VisualLintLongText"
+                    tools:text="@tools:sample/lorem/random" />
 
                 <TextView
                     android:id="@+id/conveniences_top_text"
@@ -217,9 +216,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="36dp"
                     android:fontFamily="@font/sf_pro_display_semibold"
+                    android:text="@string/conveniences"
                     android:textColor="@color/dark_grey_text"
                     android:textSize="16sp"
-                    android:text="@string/conveniences"
                     app:layout_constraintEnd_toEndOf="@id/conveniences"
                     app:layout_constraintStart_toStartOf="@id/conveniences"
                     app:layout_constraintTop_toTopOf="@id/conveniences"
@@ -231,12 +230,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="36dp"
                     android:fontFamily="@font/sf_pro_display_semibold"
+                    android:text="@string/the_most_necessary"
                     android:textColor="@color/grey_text"
                     android:textSize="14sp"
-                    android:text="@string/the_most_necessary"
+                    app:layout_constraintBottom_toBottomOf="@id/conveniences"
                     app:layout_constraintEnd_toEndOf="@id/conveniences"
                     app:layout_constraintStart_toStartOf="@id/conveniences"
-                    app:layout_constraintBottom_toBottomOf="@id/conveniences"
                     tools:ignore="VisualLintOverlap" />
 
                 <androidx.appcompat.widget.AppCompatButton
@@ -252,18 +251,18 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/description"
                     tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck,VisualLintButtonSize" />
-                
+
                 <FrameLayout
                     android:id="@+id/line_1"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginStart="69dp"
-                    android:layout_marginEnd="31dp"
                     android:layout_marginTop="10dp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginEnd="31dp"
+                    android:background="@color/grey_text"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/conveniences"
-                    android:background="@color/grey_text" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/conveniences" />
 
                 <TextView
                     android:id="@+id/included_top_text"
@@ -271,9 +270,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="36dp"
                     android:fontFamily="@font/sf_pro_display_semibold"
+                    android:text="@string/included"
                     android:textColor="@color/dark_grey_text"
                     android:textSize="16sp"
-                    android:text="@string/included"
                     app:layout_constraintEnd_toEndOf="@id/included"
                     app:layout_constraintStart_toStartOf="@id/included"
                     app:layout_constraintTop_toTopOf="@id/included"
@@ -285,12 +284,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="36dp"
                     android:fontFamily="@font/sf_pro_display_semibold"
+                    android:text="@string/the_most_necessary"
                     android:textColor="@color/grey_text"
                     android:textSize="14sp"
-                    android:text="@string/the_most_necessary"
+                    app:layout_constraintBottom_toBottomOf="@id/included"
                     app:layout_constraintEnd_toEndOf="@id/included"
                     app:layout_constraintStart_toStartOf="@id/included"
-                    app:layout_constraintBottom_toBottomOf="@id/included"
                     tools:ignore="VisualLintOverlap" />
 
                 <androidx.appcompat.widget.AppCompatButton
@@ -312,12 +311,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginStart="69dp"
-                    android:layout_marginEnd="31dp"
                     android:layout_marginTop="10dp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginEnd="31dp"
+                    android:background="@color/grey_text"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/included"
-                    android:background="@color/grey_text" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/included" />
 
                 <TextView
                     android:id="@+id/not_included_top_text"
@@ -325,9 +324,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="36dp"
                     android:fontFamily="@font/sf_pro_display_semibold"
+                    android:text="@string/not_included"
                     android:textColor="@color/dark_grey_text"
                     android:textSize="16sp"
-                    android:text="@string/not_included"
                     app:layout_constraintEnd_toEndOf="@id/not_included"
                     app:layout_constraintStart_toStartOf="@id/not_included"
                     app:layout_constraintTop_toTopOf="@id/not_included"
@@ -339,12 +338,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="36dp"
                     android:fontFamily="@font/sf_pro_display_semibold"
+                    android:text="@string/the_most_necessary"
                     android:textColor="@color/grey_text"
                     android:textSize="14sp"
-                    android:text="@string/the_most_necessary"
+                    app:layout_constraintBottom_toBottomOf="@id/not_included"
                     app:layout_constraintEnd_toEndOf="@id/not_included"
                     app:layout_constraintStart_toStartOf="@id/not_included"
-                    app:layout_constraintBottom_toBottomOf="@id/not_included"
                     tools:ignore="VisualLintOverlap" />
 
                 <androidx.appcompat.widget.AppCompatButton
@@ -357,10 +356,10 @@
                     android:layout_marginBottom="31dp"
                     android:drawableStart="@drawable/tick_square"
                     android:drawableEnd="@drawable/arrow_right"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/line_2"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck,VisualLintButtonSize" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -373,18 +372,15 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/to_choosing_room"
+                    style="@style/ButtonBlueBorderlessHeight48"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="16dp"
                     android:layout_marginTop="12dp"
                     android:layout_marginBottom="28dp"
                     android:background="@drawable/button_rounded_15_background"
-                    android:fontFamily="@font/sf_pro_display_semibold"
                     android:padding="15dp"
                     android:text="@string/to_choosing_room"
-                    android:textAllCaps="false"
-                    android:textColor="@color/white"
-                    android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

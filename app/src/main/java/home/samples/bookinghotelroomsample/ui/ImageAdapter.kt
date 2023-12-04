@@ -35,9 +35,10 @@ class ImageAdapter : RecyclerView.Adapter<ImageViewHolder>() {
         with(holder.binding) {
             item?.let {
                 Glide
-                    .with(hotelImage.context)
+                    .with(pagerImage.context)
                     .load(it)
-                    .into(hotelImage)
+                    .placeholder(androidx.constraintlayout.widget.R.color.material_grey_300)
+                    .into(pagerImage)
             }
         }
     }

@@ -25,6 +25,8 @@ class RoomViewModel(
     private val _rooms = MutableStateFlow<List<Room>>(emptyList())
     val rooms = _rooms.asStateFlow()
 
+    var hotelName: String = ""
+
     fun loadRoomsListData() {
         Log.d(TAG, "loadRoomsListData() запущена")
         viewModelScope.launch(Dispatchers.IO) {

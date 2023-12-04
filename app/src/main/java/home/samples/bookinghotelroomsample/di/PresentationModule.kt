@@ -33,8 +33,12 @@ class PresentationModule {
     }
 
     @Provides
-    fun provideRoomViewModel(): RoomViewModel {
-        return RoomViewModel()
+    fun provideRoomViewModel(
+        repository: Repository
+    ): RoomViewModel {
+        return RoomViewModel(
+            repository
+        )
     }
 
     @Provides

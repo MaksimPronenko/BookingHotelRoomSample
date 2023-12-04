@@ -57,6 +57,9 @@ dependencies {
     implementation("androidx.navigation:navigation-fragment-ktx:2.5.3")
     implementation("androidx.navigation:navigation-ui-ktx:2.5.3")
 
+    // RecyclerView
+    implementation("androidx.recyclerview:recyclerview:1.2.1")
+
     // Retrofit
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
 
