@@ -1,5 +1,6 @@
 package home.samples.bookinghotelroomsample.api
 
+import home.samples.bookinghotelroomsample.models.BookingData
 import home.samples.bookinghotelroomsample.models.Hotel
 import home.samples.bookinghotelroomsample.models.RoomsList
 import okhttp3.OkHttpClient
@@ -14,6 +15,9 @@ interface HotelApi {
 
     @GET("/v3/8b532701-709e-4194-a41c-1a903af00195")
     suspend fun getRoomsList(): RoomsList?
+
+    @GET("/v3/63866c74-d593-432c-af8e-f279d1a8d2ff")
+    suspend fun getBookingData(): BookingData?
 }
 
 val retrofit: HotelApi = Retrofit

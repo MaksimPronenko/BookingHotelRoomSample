@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import home.samples.bookinghotelroomsample.databinding.PagerHotelImageItemBinding
+import home.samples.bookinghotelroomsample.databinding.PagerImageItemBinding
 
 class ImageAdapter : RecyclerView.Adapter<ImageViewHolder>() {
     private var data: List<String> = emptyList()
@@ -22,7 +22,7 @@ class ImageAdapter : RecyclerView.Adapter<ImageViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageViewHolder {
         return ImageViewHolder(
-            PagerHotelImageItemBinding.inflate(
+            PagerImageItemBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
@@ -44,5 +44,5 @@ class ImageAdapter : RecyclerView.Adapter<ImageViewHolder>() {
     }
 }
 
-class ImageViewHolder(val binding: PagerHotelImageItemBinding) :
+class ImageViewHolder(val binding: PagerImageItemBinding) :
     RecyclerView.ViewHolder(binding.root)

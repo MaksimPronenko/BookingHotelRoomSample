@@ -29,9 +29,9 @@ private const val TAG = "RoomFragment"
 @AndroidEntryPoint
 class RoomFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = RoomFragment()
-    }
+//    companion object {
+//        fun newInstance() = RoomFragment()
+//    }
 
     @Inject
     lateinit var roomViewModelFactory: RoomViewModelFactory

@@ -47,8 +47,12 @@ class PresentationModule {
     }
 
     @Provides
-    fun provideBookingViewModel(): BookingViewModel {
-        return BookingViewModel()
+    fun provideBookingViewModel(
+        repository: Repository
+    ): BookingViewModel {
+        return BookingViewModel(
+            repository
+        )
     }
 
     @Provides

@@ -2,6 +2,7 @@ package home.samples.bookinghotelroomsample.data
 
 import android.util.Log
 import home.samples.bookinghotelroomsample.api.retrofit
+import home.samples.bookinghotelroomsample.models.BookingData
 import home.samples.bookinghotelroomsample.models.Hotel
 import home.samples.bookinghotelroomsample.models.RoomsList
 import javax.inject.Inject
@@ -30,6 +31,21 @@ class Repository @Inject constructor() {
     suspend fun getRoomsList(): RoomsList? {
         kotlin.runCatching {
             retrofit.getRoomsList()
+        }.fold(
+            onSuccess = {
+                Log.d(TAG, it.toString())
+                return it
+            },
+            onFailure = {
+                Log.d(TAG, "Failure")
+                return null
+            }
+        )
+    }
+
+    suspend fun getBookingData(): BookingData? {
+        kotlin.runCatching {
+            retrofit.getBookingData()
         }.fold(
             onSuccess = {
                 Log.d(TAG, it.toString())
