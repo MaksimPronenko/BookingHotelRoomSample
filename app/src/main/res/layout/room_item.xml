@@ -16,7 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/pager_hotel_image_item" />
+        tools:listitem="@layout/pager_image_item" />
 
     <TextView
         android:id="@+id/room_name"

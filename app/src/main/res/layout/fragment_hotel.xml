@@ -65,7 +65,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/hotel"
-                    tools:listitem="@layout/pager_hotel_image_item" />
+                    tools:listitem="@layout/pager_image_item" />
 
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:id="@+id/stars_field"
@@ -381,10 +381,6 @@
                     android:background="@drawable/button_rounded_15_background"
                     android:padding="15dp"
                     android:text="@string/to_choosing_room"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/hotel_name"
                     tools:ignore="VisualLintButtonSize" />
 
             </FrameLayout>
