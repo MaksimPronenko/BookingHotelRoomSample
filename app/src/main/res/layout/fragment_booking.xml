@@ -73,11 +73,423 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/stars_field"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/stars_background"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/hotel_image_pager">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:src="@drawable/star_yellow"
+                        tools:ignore="ContentDescription,ImageContrastCheck" />
+
+                    <TextView
+                        android:id="@+id/rating_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="2dp"
+                        android:fontFamily="@font/sf_pro_display_semibold"
+                        android:textColor="@color/yellow"
+                        android:textSize="16sp" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <TextView
+                    android:id="@+id/hotel_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/sf_pro_display_semibold"
+                    android:gravity="start"
+                    android:textColor="@color/black"
+                    android:textSize="22sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/stars_field"
+                    tools:text="@tools:sample/cities" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/hotel_address"
+                    style="@style/ButtonTransparentBorderlessTextBlueHeight17"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/hotel_name"
+                    tools:ignore="TouchTargetSizeCheck,VisualLintButtonSize"
+                    tools:text="@tools:sample/cities" />
+
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/tour_data"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/frame_background_rounded">
+
+                <TextView
+                    android:id="@+id/departure_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/sf_pro_display_regular"
+                    android:gravity="start"
+                    android:text="@string/departure"
+                    android:textColor="@color/grey_text"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/departure"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="156dp"
+                    android:layout_marginEnd="16dp"
+                    android:fontFamily="@font/sf_pro_display_regular"
+                    android:gravity="start"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/departure_title"
+                    tools:text="@tools:sample/cities" />
+
+                <TextView
+                    android:id="@+id/country_city_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/sf_pro_display_regular"
+                    android:gravity="start"
+                    android:text="@string/country_city"
+                    android:textColor="@color/grey_text"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/departure_title" />
+
+                <TextView
+                    android:id="@+id/country_city"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="156dp"
+                    android:layout_marginEnd="16dp"
+                    android:fontFamily="@font/sf_pro_display_regular"
+                    android:gravity="start"
+                    android:singleLine="false"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/country_city_title"
+                    tools:text="@tools:sample/cities" />
+
+                <androidx.constraintlayout.widget.Barrier
+                    android:id="@+id/country_city_data_barrier"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:barrierDirection="bottom"
+                    app:constraint_referenced_ids="country_city_title, country_city"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/dates_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/sf_pro_display_regular"
+                    android:gravity="start"
+                    android:text="@string/dates"
+                    android:textColor="@color/grey_text"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/country_city_data_barrier" />
+
+                <TextView
+                    android:id="@+id/dates"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="156dp"
+                    android:layout_marginEnd="16dp"
+                    android:fontFamily="@font/sf_pro_display_regular"
+                    android:gravity="start"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/dates_title"
+                    tools:text="@tools:sample/cities" />
+
+                <TextView
+                    android:id="@+id/number_of_nights_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/sf_pro_display_regular"
+                    android:gravity="start"
+                    android:text="@string/number_of_nights"
+                    android:textColor="@color/grey_text"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/dates_title" />
+
+                <TextView
+                    android:id="@+id/number_of_nights"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="156dp"
+                    android:layout_marginEnd="16dp"
+                    android:fontFamily="@font/sf_pro_display_regular"
+                    android:gravity="start"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/number_of_nights_title"
+                    tools:text="@tools:sample/cities" />
+
+                <TextView
+                    android:id="@+id/hotel_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/sf_pro_display_regular"
+                    android:gravity="start"
+                    android:text="@string/hotel"
+                    android:textColor="@color/grey_text"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/number_of_nights_title" />
+
+                <TextView
+                    android:id="@+id/hotel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="156dp"
+                    android:layout_marginEnd="16dp"
+                    android:fontFamily="@font/sf_pro_display_regular"
+                    android:gravity="start"
+                    android:singleLine="false"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/hotel_title"
+                    tools:text="@tools:sample/cities" />
+
+                <androidx.constraintlayout.widget.Barrier
+                    android:id="@+id/hotel_data_barrier"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:barrierDirection="bottom"
+                    app:constraint_referenced_ids="hotel_title, hotel"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/room_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/sf_pro_display_regular"
+                    android:gravity="start"
+                    android:text="@string/room"
+                    android:textColor="@color/grey_text"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/hotel_data_barrier" />
+
+                <TextView
+                    android:id="@+id/room"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="156dp"
+                    android:layout_marginEnd="16dp"
+                    android:fontFamily="@font/sf_pro_display_regular"
+                    android:gravity="start"
+                    android:singleLine="false"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/room_title"
+                    tools:text="@tools:sample/cities" />
+
+                <androidx.constraintlayout.widget.Barrier
+                    android:id="@+id/room_data_barrier"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:barrierDirection="bottom"
+                    app:constraint_referenced_ids="room_title, room"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/nutrition_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginVertical="16dp"
+                    android:fontFamily="@font/sf_pro_display_regular"
+                    android:gravity="start"
+                    android:text="@string/nutrition"
+                    android:textColor="@color/grey_text"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/room_data_barrier" />
+
+                <TextView
+                    android:id="@+id/nutrition"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="16dp"
+                    android:layout_marginStart="156dp"
+                    android:layout_marginEnd="16dp"
+                    android:fontFamily="@font/sf_pro_display_regular"
+                    android:gravity="start"
+                    android:singleLine="false"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/room_data_barrier"
+                    tools:text="@tools:sample/cities" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/buyer_information"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/sf_pro_display_semibold"
+                    android:gravity="start"
+                    android:text="@string/buyer_information"
+                    android:textColor="@color/black"
+                    android:textSize="22sp" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/phone_number"
+                    style="@style/BookingInputLayoutFilled"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="20dp"
+                    android:hint="@string/phone_number"
+                    app:boxBackgroundColor="@color/grey_screen_background"
+                    app:boxCornerRadiusBottomEnd="10dp"
+                    app:boxCornerRadiusBottomStart="10dp"
+                    app:boxCornerRadiusTopEnd="10dp"
+                    app:boxCornerRadiusTopStart="10dp"
+                    app:boxStrokeWidth="0dp"
+                    app:boxStrokeWidthFocused="0dp"
+                    app:hintTextColor="@color/grey_hint"
+                    app:hintTextAppearance="@style/HintTextAppearance"
+                    app:placeholderText="@string/phone_number_mask_short"
+                    app:prefixText="@string/phone_number_prefix"
+                    app:prefixTextAppearance="@style/EditTextAppearance"
+                    app:prefixTextColor="@color/blue_dark_input_text"
+                    app:placeholderTextColor="@color/blue_dark_input_text"
+                    app:placeholderTextAppearance="@style/HintNotActiveTextAppearance">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/phone_number_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="phone"
+                        android:maxLength="18"
+                        android:fontFamily="@font/sf_pro_display_regular"
+                        android:textSize="16sp"
+                        android:textColor="@color/blue_dark_input_text"
+                        tools:ignore="TouchTargetSizeCheck" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/mail"
+                    style="@style/BookingTextInputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/text_input_rounded_10"
+                    android:hint="@string/mail"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="10dp"
+                    app:hintTextAppearance="@style/HintTextAppearance">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/mail_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/text_input_edit_text_shape"
+                        android:fontFamily="@font/sf_pro_display_regular"
+                        android:textColor="@color/blue_dark_input_text"
+                        android:textSize="16sp"
+                        tools:ignore="TouchTargetSizeCheck" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/data_and_receipt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="16dp"
+                    android:fontFamily="@font/sf_pro_display_regular"
+                    android:gravity="start"
+                    android:singleLine="false"
+                    android:text="@string/data_and_receipt"
+                    android:textColor="@color/grey_text"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:background="@drawable/frame_background_rounded" >
+                android:background="@drawable/frame_background_rounded">
 
                 <TextView
                     android:id="@+id/add_tourist"
@@ -87,9 +499,9 @@
                     android:layout_marginVertical="16dp"
                     android:fontFamily="@font/sf_pro_display_semibold"
                     android:gravity="start"
+                    android:text="@string/add_tourist"
                     android:textColor="@color/black"
-                    android:textSize="22sp"
-                    android:text="@string/add_tourist" />
+                    android:textSize="22sp" />
 
                 <androidx.constraintlayout.utils.widget.ImageFilterButton
                     android:id="@+id/button_add_tourist"

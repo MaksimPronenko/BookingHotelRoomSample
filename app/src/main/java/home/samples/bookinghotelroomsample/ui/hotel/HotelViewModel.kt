@@ -30,7 +30,7 @@ class HotelViewModel(
     var address: String? = null
     private var minimalPrice: Int? = null
     private var priceForIt: String? = null
-    private var rating: Int? = null
+    var rating: Int? = null
     private var imageUrls: List<String>? = null
     var description: String? = null
     var peculiarities: List<String>? = null
@@ -66,16 +66,7 @@ class HotelViewModel(
         }
     }
 
-    fun getRatingText(context: Context): String {
-        return when(rating) {
-            1 -> "$rating " + context.getString(R.string.minimum_comfort_level)
-            2 -> "$rating " + context.getString(R.string.satisfactory)
-            3 -> "$rating " + context.getString(R.string.good)
-            4 -> "$rating " + context.getString(R.string.great)
-            5 -> "$rating " + context.getString(R.string.excellent)
-            else -> context.getString(R.string.rating_unknown)
-        }
-    }
+
 
     fun getMinimalPriceText(context: Context): String {
         return context.getString(R.string.from) + " $minimalPrice " + Html.fromHtml("&#x20bd", HtmlCompat.FROM_HTML_MODE_LEGACY)

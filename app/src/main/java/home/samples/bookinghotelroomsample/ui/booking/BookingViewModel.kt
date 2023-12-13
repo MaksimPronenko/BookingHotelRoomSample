@@ -23,6 +23,8 @@ class BookingViewModel(
 
     var bookingData: BookingData? = null
 
+    var phoneNumber: String = ""
+
     fun loadBookingData() {
         Log.d(TAG, "loadRoomsListData() запущена")
         viewModelScope.launch(Dispatchers.IO) {
@@ -33,7 +35,11 @@ class BookingViewModel(
             Log.d(TAG, bookingData.toString())
 
             if (bookingData == null) _state.value = ViewModelState.Error
-            else Log.d(TAG, "ViewModelState.Loaded")
+            else _state.value = ViewModelState.Loaded
         }
+    }
+
+    fun handleEnteringNumber(enteredNumber: String) {
+        phoneNumber = enteredNumber
     }
 }

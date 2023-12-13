@@ -27,5 +27,16 @@ class Utils{
         private fun convertDpToPixel(dp: Float, context: Context): Float {
             return dp * (context.resources.displayMetrics.densityDpi.toFloat() / DisplayMetrics.DENSITY_DEFAULT)
         }
+
+        fun getRatingText(context: Context, rating: Int?): String {
+            return when(rating) {
+                1 -> "$rating " + context.getString(R.string.minimum_comfort_level)
+                2 -> "$rating " + context.getString(R.string.satisfactory)
+                3 -> "$rating " + context.getString(R.string.good)
+                4 -> "$rating " + context.getString(R.string.great)
+                5 -> "$rating " + context.getString(R.string.excellent)
+                else -> context.getString(R.string.rating_unknown)
+            }
+        }
     }
 }

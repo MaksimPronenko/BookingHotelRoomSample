@@ -7,6 +7,8 @@
     <string name="satisfactory">Удовлетворительно</string>
     <string name="minimum_comfort_level">Минимальный уровень комфорта</string>
     <string name="rating_unknown">Рейтинг неизвестен</string>
+    <string name="name_unknown">Название неизвестно</string>
+    <string name="address_unknown">Адрес неизвестен</string>
     <string name="from">от</string>
     <string name="about_hotel">Об отеле</string>
     <string name="conveniences">Удобства</string>
@@ -18,8 +20,23 @@
     <string name="for_tour_with_flight">за тур с перелётом</string>
     <string name="room_details">Подробно о номере</string>
     <string name="booking">Бронирование</string>
+    <string name="departure">Вылет из</string>
+    <string name="country_city">Страна, город</string>
+    <string name="dates">Даты</string>
+    <string name="number_of_nights">Кол-во ночей</string>
+    <string name="room">Номер</string>
+    <string name="nutrition">Питание</string>
     <string name="add_tourist">Добавить туриста</string>
     <string name="pay">Оплатить</string>
     <string name="order_paid">Заказ оплачен</string>
     <string name="super1">Супер!</string>
+    <string name="unknown">Неизвестно</string>
+    <string name="of_nights">ночей</string>
+    <string name="buyer_information">Информация о покупателе</string>
+    <string name="phone_number">Номер телефона</string>
+    <string name="mail">Почта</string>
+    <string name="data_and_receipt">Эти данные никому не передаются. После оплаты мы вышли чек на указанный вами номер и почту</string>
+    <string name="phone_number_mask">+7 (***) ***-**-**</string>
+    <string name="phone_number_prefix">+7 (</string>
+    <string name="phone_number_mask_short">***) ***-**-**</string>
 </resources>

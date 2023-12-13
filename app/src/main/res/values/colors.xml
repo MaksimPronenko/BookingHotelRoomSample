@@ -9,11 +9,16 @@
     <color name="white">#FFFFFFFF</color>
     <color name="blue">#FF0D72FF</color>
     <color name="blue_light">#1A0D72FF</color>
+    <color name="blue_dark_input_text">#FF14142B</color>
     <color name="bright_yellow">#33FFC700</color>
     <color name="yellow">#FFFFA800</color>
     <color name="dark_grey_text">#FF2C3035</color>
     <color name="grey_text">#FF828796</color>
+    <color name="grey_hint">#FFA9ABB7</color>
     <color name="grey_screen_background">#FFF6F6F9</color>
     <color name="grey_peculiarity_chip">#FFFBFBFC</color>
     <color name="transparent">#00FFFFFF</color>
+    <color name="redtest">#FFFF0000</color>
+    <color name="pinktest">#FFD900FF</color>
+    <color name="cyantest">#00AF9B</color>
 </resources>
