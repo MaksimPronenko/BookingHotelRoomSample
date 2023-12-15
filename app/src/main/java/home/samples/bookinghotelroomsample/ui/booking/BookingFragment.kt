@@ -6,7 +6,9 @@ import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.OnFocusChangeListener
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -123,8 +125,42 @@ class BookingFragment : Fragment() {
                 mSelfChange = false
             }
 
-            override fun afterTextChanged(s: Editable?) {}
+            override fun afterTextChanged(s: Editable?) {
+                Log.d(TAG, "afterTextChanged(s) сработала. s = $s")
+            }
         })
+
+//        binding.phoneNumberEditText.onFocusChangeListener = View.OnFocusChangeListener() {
+//            override fun onFocusChange(View v, boolean hasFocus) {
+//                if (v == editText && hasFocus == false) {
+//                    ....
+//                }
+//            }
+//        };
+
+        binding.phoneNumberEditText.onFocusChangeListener = OnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                Toast.makeText(requireContext(), "Got the focus", Toast.LENGTH_LONG).show()
+            } else {
+                Toast.makeText(requireContext(), "Lost the focus", Toast.LENGTH_LONG).show()
+            }
+        }
+
+
+//        binding.phoneNumberEditText.setOnEditorActionListener(TextView.OnEditorActionListener {
+//            override fun onEditorAction(TextView v, int actionId, KeyEvent event) {
+//                if (actionId == EditorInfo.IME_ACTION_SEARCH ||
+//                    actionId == EditorInfo.IME_ACTION_DONE ||
+//                    event != null &&
+//                    event.getAction() == KeyEvent.ACTION_DOWN &&
+//                    event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
+//                    if (event == null || !event.isShiftPressed()) {
+//                        return true
+//                    }
+//                }
+//                return false
+//            }
+//        })
 
 //        binding.phoneNumberEditText.setOnFo {
 //            val receivedDigits: String = s.replace(Regex("(\\D*)"), "")
