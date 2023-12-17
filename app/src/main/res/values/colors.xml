@@ -18,6 +18,7 @@
     <color name="grey_screen_background">#FFF6F6F9</color>
     <color name="grey_peculiarity_chip">#FFFBFBFC</color>
     <color name="transparent">#00FFFFFF</color>
+    <color name="error_background">#26EB5757</color>
     <color name="redtest">#FFFF0000</color>
     <color name="pinktest">#FFD900FF</color>
     <color name="cyantest">#00AF9B</color>
