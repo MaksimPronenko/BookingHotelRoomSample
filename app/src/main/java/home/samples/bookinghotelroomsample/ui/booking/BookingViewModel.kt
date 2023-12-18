@@ -7,8 +7,10 @@ import home.samples.bookinghotelroomsample.data.Repository
 import home.samples.bookinghotelroomsample.models.BookingData
 import home.samples.bookinghotelroomsample.ui.BookingVMState
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 
 private const val TAG = "BookingVM"
@@ -23,6 +25,9 @@ class BookingViewModel(
 
     var phoneNumberState: Boolean = true
     var emailState: Boolean = true
+
+    private val _phoneNumberStateChannel = Channel<Boolean>()
+    val phoneNumberStateChannel = _phoneNumberStateChannel.receiveAsFlow()
 
     var bookingData: BookingData? = null
 
@@ -44,8 +49,12 @@ class BookingViewModel(
     }
 
     fun handleEnteredData() {
-        phoneNumberState = receivedDigits.length == 10
-        emailState = false
-        _state.value = BookingVMState.Loaded(phoneNumberState, emailState)
+        viewModelScope.launch {
+            phoneNumberState = receivedDigits.length == 10
+            Log.d(TAG, "handleEnteredData(): phoneNumberState = $phoneNumberState")
+            emailState = false
+            _state.value = BookingVMState.Loaded(phoneNumberState, emailState)
+            _phoneNumberStateChannel.send(phoneNumberState)
+        }
     }
 }

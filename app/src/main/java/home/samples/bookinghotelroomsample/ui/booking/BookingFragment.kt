@@ -137,6 +137,15 @@ class BookingFragment : Fragment() {
         }
 
         viewModelStatesProcessing()
+
+        viewLifecycleOwner.lifecycleScope
+            .launchWhenStarted {
+                viewModel.phoneNumberStateChannel.collect {
+                    Log.d(TAG, "Сработал phoneNumberStateChannel.collect")
+                    fieldsStatesProcessing(it, viewModel.emailState)
+                }
+
+            }
     }
 
     private fun viewModelStatesProcessing() {
@@ -198,7 +207,7 @@ class BookingFragment : Fragment() {
         else binding.phoneNumber.boxBackgroundColor = requireContext().getColor(R.color.error_background)
 
         if(emailState) binding.mail.boxBackgroundColor = requireContext().getColor(R.color.grey_screen_background)
-        else binding.phoneNumber.boxBackgroundColor = requireContext().getColor(R.color.error_background)
+        else binding.mail.boxBackgroundColor = requireContext().getColor(R.color.error_background)
     }
 
     private fun getDates(start: String?, end: String?): String {
