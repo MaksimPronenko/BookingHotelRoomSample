@@ -70,6 +70,8 @@ class BookingFragment : Fragment() {
 
                 // Принятые цифры из поля без префикса "+7 ("
                 viewModel.receivedDigits = s.replace(Regex("(\\D*)"), "")
+                if (viewModel.receivedDigits.length > 10)
+                    viewModel.receivedDigits = viewModel.receivedDigits.substring(0, 10)
                 Log.d(TAG, "receivedDigits = ${viewModel.receivedDigits}")
 
                 var cursorPosition = 0
@@ -78,7 +80,11 @@ class BookingFragment : Fragment() {
                     when (i) {
                         in (0..2) -> {
                             resultWithMask =
-                                resultWithMask.replaceRange(i, i + 1, viewModel.receivedDigits[i].toString())
+                                resultWithMask.replaceRange(
+                                    i,
+                                    i + 1,
+                                    viewModel.receivedDigits[i].toString()
+                                )
                             cursorPosition = i + 1
                         }
 
@@ -109,7 +115,6 @@ class BookingFragment : Fragment() {
                             cursorPosition = i + 5
                         }
                     }
-                    Log.d(TAG, "resultWithMask = $resultWithMask")
                 }
 
                 val resultStr = resultWithMask
@@ -128,24 +133,40 @@ class BookingFragment : Fragment() {
 
         binding.phoneNumberEditText.onFocusChangeListener = OnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
-                Toast.makeText(requireContext(), "Phone number editing in process", Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    requireContext(),
+                    "Phone number editing in process",
+                    Toast.LENGTH_LONG
+                ).show()
             } else {
-                Toast.makeText(requireContext(), "Phone number editing finished", Toast.LENGTH_LONG).show()
-                viewModel.handleEnteredData()
-                fieldsStatesProcessing(viewModel.phoneNumberState, viewModel.emailState)
+                Toast.makeText(requireContext(), "Phone number editing finished", Toast.LENGTH_LONG)
+                    .show()
+                viewModel.handleEnteredPhoneNumber()
+//                phoneNumberFieldRefresh(viewModel.phoneNumberState)
+            }
+        }
+
+        binding.emailEditText.onFocusChangeListener = OnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                Toast.makeText(requireContext(), "Email editing in process", Toast.LENGTH_LONG)
+                    .show()
+            } else {
+                Toast.makeText(requireContext(), "Email editing finished", Toast.LENGTH_LONG).show()
+                viewModel.handleEnteredEmail(binding.emailEditText.text.toString())
+//                phoneNumberFieldRefresh(viewModel.phoneNumberState)
             }
         }
 
         viewModelStatesProcessing()
 
-        viewLifecycleOwner.lifecycleScope
-            .launchWhenStarted {
-                viewModel.phoneNumberStateChannel.collect {
-                    Log.d(TAG, "Сработал phoneNumberStateChannel.collect")
-                    fieldsStatesProcessing(it, viewModel.emailState)
-                }
-
-            }
+//        viewLifecycleOwner.lifecycleScope
+//            .launchWhenStarted {
+//                viewModel.phoneNumberStateChannel.collect {
+//                    Log.d(TAG, "Сработал phoneNumberStateChannel.collect")
+//                    fieldsStatesProcessing(it, viewModel.emailState)
+//                }
+//
+//            }
     }
 
     private fun viewModelStatesProcessing() {
@@ -160,6 +181,10 @@ class BookingFragment : Fragment() {
                             }
 
                             is BookingVMState.Loaded -> {
+                                Log.d(
+                                    TAG,
+                                    "BookingVMState.Loaded: phone=${state.phoneNumberState}, email=${state.emailState}"
+                                )
                                 binding.progress.isGone = true
                                 binding.scrollView.isGone = false
 
@@ -189,7 +214,9 @@ class BookingFragment : Fragment() {
                                 binding.nutrition.text = viewModel.bookingData?.nutrition
                                     ?: requireContext().getString(R.string.unknown)
 
-                                fieldsStatesProcessing(state.phoneNumberState, state.emailState)
+//                                fieldsStatesProcessing(state.phoneNumberState, state.emailState)
+                                phoneNumberFieldRefresh(state.phoneNumberState)
+                                emailFieldRefresh(state.emailState)
                             }
 
                             BookingVMState.Error -> {
@@ -202,13 +229,26 @@ class BookingFragment : Fragment() {
         }
     }
 
-    private fun fieldsStatesProcessing(phoneNumberState: Boolean, emailState: Boolean) {
-        if(phoneNumberState) binding.phoneNumber.boxBackgroundColor = requireContext().getColor(R.color.grey_screen_background)
-        else binding.phoneNumber.boxBackgroundColor = requireContext().getColor(R.color.error_background)
-
-        if(emailState) binding.mail.boxBackgroundColor = requireContext().getColor(R.color.grey_screen_background)
-        else binding.mail.boxBackgroundColor = requireContext().getColor(R.color.error_background)
+    private fun phoneNumberFieldRefresh(phoneNumberState: Boolean) {
+        if (phoneNumberState) binding.phoneNumber.boxBackgroundColor =
+            requireContext().getColor(R.color.grey_screen_background)
+        else binding.phoneNumber.boxBackgroundColor =
+            requireContext().getColor(R.color.error_background)
     }
+
+    private fun emailFieldRefresh(emailState: Boolean) {
+        if (emailState) binding.email.boxBackgroundColor =
+            requireContext().getColor(R.color.grey_screen_background)
+        else binding.email.boxBackgroundColor = requireContext().getColor(R.color.error_background)
+    }
+
+//    private fun fieldsStatesProcessing(phoneNumberState: Boolean, emailState: Boolean) {
+//        if(phoneNumberState) binding.phoneNumber.boxBackgroundColor = requireContext().getColor(R.color.grey_screen_background)
+//        else binding.phoneNumber.boxBackgroundColor = requireContext().getColor(R.color.error_background)
+//
+//        if(emailState) binding.mail.boxBackgroundColor = requireContext().getColor(R.color.grey_screen_background)
+//        else binding.mail.boxBackgroundColor = requireContext().getColor(R.color.error_background)
+//    }
 
     private fun getDates(start: String?, end: String?): String {
         return if (start != null && end != null) "$start - $end"
