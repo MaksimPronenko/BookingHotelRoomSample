@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import home.samples.bookinghotelroomsample.databinding.RoomItemBinding
 import home.samples.bookinghotelroomsample.models.Room
-import home.samples.bookinghotelroomsample.ui.ImageAdapter
+import home.samples.bookinghotelroomsample.ui.apapters.ImageAdapter
 import home.samples.bookinghotelroomsample.utils.Utils
 
 class RoomAdapter(

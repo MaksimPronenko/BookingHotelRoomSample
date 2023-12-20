@@ -1,4 +1,4 @@
-package home.samples.bookinghotelroomsample.ui
+package home.samples.bookinghotelroomsample.ui.apapters
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater

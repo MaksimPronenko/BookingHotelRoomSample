@@ -22,8 +22,11 @@ class BookingViewModel(
     )
     val state = _state.asStateFlow()
 
-    var phoneNumberState: Boolean = true
-    var emailState: Boolean = true
+    var phoneNumberState: Boolean? = null
+    var emailState: Boolean? = null
+    // Стутус null для поля ввода означает, что не произошла ещё первая проверка состояния при
+    // снятии фокуса с поля. При последующей активации поля, проверка будет происходить уже при
+    // каждом изменении символа.
 
 //    private val _phoneNumberStateChannel = Channel<Boolean>()
 //    val phoneNumberStateChannel = _phoneNumberStateChannel.receiveAsFlow()
@@ -43,7 +46,7 @@ class BookingViewModel(
             Log.d(TAG, bookingData.toString())
 
             if (bookingData == null) _state.value = BookingVMState.Error
-            else _state.value = BookingVMState.Loaded(phoneNumberState, emailState)
+            else _state.value = BookingVMState.Loaded(phoneNumberState ?: true, emailState ?: true)
         }
     }
 
@@ -51,16 +54,16 @@ class BookingViewModel(
         viewModelScope.launch {
             phoneNumberState = receivedDigits.length == 10
             Log.d(TAG, "handleEnteredPhoneNumber(): phoneNumberState = $phoneNumberState")
-            _state.value = BookingVMState.Loaded(phoneNumberState, emailState)
+            _state.value = BookingVMState.Loaded(phoneNumberState!!, emailState ?: true)
 //            _phoneNumberStateChannel.send(phoneNumberState)
         }
     }
 
     fun handleEnteredEmail(email: String) {
         viewModelScope.launch {
-            emailState = !email.isNullOrEmpty() && Patterns.EMAIL_ADDRESS.matcher(email).matches()
+            emailState = email.isNotEmpty() && Patterns.EMAIL_ADDRESS.matcher(email).matches()
             Log.d(TAG, "handleEnteredEmail(): email = $email; emailState = $emailState")
-            _state.value = BookingVMState.Loaded(phoneNumberState, emailState)
+            _state.value = BookingVMState.Loaded(phoneNumberState ?: true, emailState!!)
         }
     }
 }

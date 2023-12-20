@@ -127,7 +127,8 @@ class BookingFragment : Fragment() {
             }
 
             override fun afterTextChanged(s: Editable?) {
-                Log.d(TAG, "afterTextChanged(s) сработала. s = $s")
+                Log.d(TAG, "phoneNumberEditText - afterTextChanged(s) сработала. s = $s")
+                if (viewModel.phoneNumberState != null ) viewModel.handleEnteredPhoneNumber()
             }
         })
 
@@ -141,10 +142,21 @@ class BookingFragment : Fragment() {
             } else {
                 Toast.makeText(requireContext(), "Phone number editing finished", Toast.LENGTH_LONG)
                     .show()
-                viewModel.handleEnteredPhoneNumber()
+                if (viewModel.phoneNumberState == null ) viewModel.handleEnteredPhoneNumber()
 //                phoneNumberFieldRefresh(viewModel.phoneNumberState)
             }
         }
+
+        binding.emailEditText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+
+            override fun afterTextChanged(s: Editable?) {
+                Log.d(TAG, "emailEditText - afterTextChanged(s) сработала. s = $s")
+                if (viewModel.emailState != null ) viewModel.handleEnteredEmail(s.toString())
+            }
+        })
 
         binding.emailEditText.onFocusChangeListener = OnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
@@ -152,7 +164,7 @@ class BookingFragment : Fragment() {
                     .show()
             } else {
                 Toast.makeText(requireContext(), "Email editing finished", Toast.LENGTH_LONG).show()
-                viewModel.handleEnteredEmail(binding.emailEditText.text.toString())
+                if (viewModel.emailState == null ) viewModel.handleEnteredEmail(binding.emailEditText.text.toString())
 //                phoneNumberFieldRefresh(viewModel.phoneNumberState)
             }
         }
@@ -252,7 +264,7 @@ class BookingFragment : Fragment() {
 
     private fun getDates(start: String?, end: String?): String {
         return if (start != null && end != null) "$start - $end"
-        else requireContext().getString(home.samples.bookinghotelroomsample.R.string.unknown)
+        else requireContext().getString(R.string.unknown)
     }
 
     private fun getNightsNumberText(nights: Int?): String {
