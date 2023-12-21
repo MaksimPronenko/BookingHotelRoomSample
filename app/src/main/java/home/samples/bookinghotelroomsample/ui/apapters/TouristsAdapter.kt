@@ -8,18 +8,21 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import home.samples.bookinghotelroomsample.databinding.AddTouristItemBinding
+import home.samples.bookinghotelroomsample.databinding.TouristDataItemBinding
+import home.samples.bookinghotelroomsample.models.Tourist
 
 private const val TAG = "TouristsAdapter"
 
-//class CollectionFilmsAdapter(
+class CollectionFilmsAdapter(
 //    val limited: Boolean,
 //    val viewedOrCollection: Boolean,
-//    val context: Context,
+    val context: Context,
 //    private val onClick: (FilmItemData) -> Unit,
-//    private val clear: () -> Unit
-//) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-//    var data: List<RecyclerViewItem> = listOf()
-//    private var mutableData: MutableList<RecyclerViewItem> = mutableListOf()
+    private val clear: () -> Unit
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    var data: List<Tourist> = listOf()
+    private var mutableData: MutableList<Tourist> = mutableListOf()
 
 //    @SuppressLint("NotifyDataSetChanged")
 //    fun setAdapterData(receivedData: List<FilmItemData>) {
@@ -92,7 +95,13 @@ private const val TAG = "TouristsAdapter"
 //            }
 //        }
 //    }
-//}
+}
 
 //class ClearViewHolder(val binding: FilmItemClearBinding) :
 //    RecyclerView.ViewHolder(binding.root)
+
+class TouristDataViewHolder(val binding: TouristDataItemBinding) :
+    RecyclerView.ViewHolder(binding.root)
+
+class AddTouristViewHolder(val binding: AddTouristItemBinding) :
+    RecyclerView.ViewHolder(binding.root)
