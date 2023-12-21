@@ -1,5 +1,7 @@
 package home.samples.bookinghotelroomsample.models
 
+open class RecyclerItem
+
 data class Tourist(
     var informationHidden: Boolean?,
     var firstName: String?,
@@ -14,4 +16,6 @@ data class Tourist(
     var passportNumberFieldStatus: Boolean?,
     var passportValidityPeriod: String?,
     var passportValidityPeriodFieldStatus: Boolean?
-)
+) : RecyclerItem()
+
+class EmptyRecyclerItem : RecyclerItem()

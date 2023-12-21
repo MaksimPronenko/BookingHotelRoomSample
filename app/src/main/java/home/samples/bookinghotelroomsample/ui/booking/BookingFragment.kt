@@ -20,6 +20,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import home.samples.bookinghotelroomsample.R
 import home.samples.bookinghotelroomsample.databinding.FragmentBookingBinding
 import home.samples.bookinghotelroomsample.ui.BookingVMState
+import home.samples.bookinghotelroomsample.ui.apapters.TouristsAdapter
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -36,6 +37,17 @@ class BookingFragment : Fragment() {
     private var _binding: FragmentBookingBinding? = null
     private val binding get() = _binding!!
 
+    private lateinit var touristsAdapter: TouristsAdapter
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        touristsAdapter = TouristsAdapter(
+            context = requireContext(),
+            hideOrShow = { hideOrShow() },
+            addTourist = { addTourist() }
+        )
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -49,6 +61,8 @@ class BookingFragment : Fragment() {
 
         Log.d(TAG, "Функция onViewCreated() запущена")
         viewModel.loadBookingData()
+
+        binding.touristsDataRecycler.adapter = touristsAdapter
 
         binding.pay.setOnClickListener {
             findNavController().navigate(R.id.action_BookingFragment_to_PaymentFragment)
@@ -270,5 +284,13 @@ class BookingFragment : Fragment() {
     private fun getNightsNumberText(nights: Int?): String {
         return if (nights != null) "$nights ${requireContext().getString(R.string.of_nights)}"
         else requireContext().getString(R.string.unknown)
+    }
+
+    private fun hideOrShow() {
+
+    }
+
+    private fun addTourist() {
+
     }
 }
