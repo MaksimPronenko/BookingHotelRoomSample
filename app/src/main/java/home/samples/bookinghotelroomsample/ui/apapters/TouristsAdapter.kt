@@ -23,7 +23,7 @@ const val VIEW_TYPE_ADD_TOURIST = 1
 
 class TouristsAdapter(
     val context: Context,
-    private val hideOrShow: () -> Unit,
+    private val changeTouristData: (Int, Tourist) -> Unit,
     private val addTourist: () -> Unit
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     var data: List<RecyclerItem> = listOf()
@@ -108,7 +108,10 @@ class TouristsAdapter(
                 passportValidityPeriodEditText.setText(item.passportValidityPeriod ?: "")
 
                 buttonHideOrShow.setOnClickListener {
-                    hideOrShow()
+                    var itemNew = item
+                    itemNew.informationHidden = if(itemNew.informationHidden == true) false
+                    else true
+                    changeTouristData(position, itemNew)
                 }
             }
         }

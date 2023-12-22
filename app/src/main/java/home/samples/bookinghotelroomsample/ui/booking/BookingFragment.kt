@@ -24,7 +24,6 @@ import home.samples.bookinghotelroomsample.ui.apapters.TouristsAdapter
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-
 private const val TAG = "BookingFragment"
 
 @AndroidEntryPoint
@@ -43,8 +42,8 @@ class BookingFragment : Fragment() {
         super.onCreate(savedInstanceState)
         touristsAdapter = TouristsAdapter(
             context = requireContext(),
-            hideOrShow = { hideOrShow() },
-            addTourist = { addTourist() }
+            changeTouristData = { position, tourist -> viewModel.changeTouristData(position, tourist) },
+            addTourist = { viewModel.addTourist() }
         )
     }
 
@@ -182,6 +181,14 @@ class BookingFragment : Fragment() {
 //                phoneNumberFieldRefresh(viewModel.phoneNumberState)
             }
         }
+
+        viewLifecycleOwner.lifecycleScope
+            .launchWhenStarted {
+                viewModel.touristsChannel.collect { tourists ->
+                    touristsAdapter.setAdapterData(tourists)
+                    Log.d(TAG, "Новый список коллекций: ${viewModel.tourists}")
+                }
+            }
 
         viewModelStatesProcessing()
 
