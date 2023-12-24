@@ -13,11 +13,7 @@ import home.samples.bookinghotelroomsample.databinding.FragmentPaymentBinding
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class PaymentFragment: Fragment() {
-
-    companion object {
-        fun newInstance() = PaymentFragment()
-    }
+class PaymentFragment : Fragment() {
 
     @Inject
     lateinit var paymentViewModelFactory: PaymentViewModelFactory
@@ -37,8 +33,16 @@ class PaymentFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.backButton.setOnClickListener {
+            findNavController().popBackStack()
+        }
+
         binding.super1.setOnClickListener {
             findNavController().navigate(R.id.action_PaymentFragment_to_HotelFragment)
         }
+
+        val orderConfirmationText = requireContext().getString(R.string.order_confirmation_part_1) +
+                viewModel.orderCode + " ${requireContext().getString(R.string.order_confirmation_part_2)}"
+        binding.orderConfirmation.text = orderConfirmationText
     }
 }

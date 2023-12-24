@@ -56,4 +56,12 @@
     <string name="citizenship">Гражданство</string>
     <string name="passport_number">Номер загранпаспорта</string>
     <string name="passport_validity_period">Срок действия загранпаспорта</string>
+    <string name="data_must_be_filled">Данные необходимо заполнить</string>
+    <string name="tour_price">Тур</string>
+    <string name="fuel_fee">Топливный сбор</string>
+    <string name="service_fee">Сервисный сбор</string>
+    <string name="to_be_paid">К оплате</string>
+    <string name="order_accepted">Ваш заказ принят в работу</string>
+    <string name="order_confirmation_part_1">Подтверждение заказа №</string>
+    <string name="order_confirmation_part_2">может занять некоторое время (от 1 часа до суток). Как только мы получим ответ от туроператора, вам на почту придет уведомление.</string>
 </resources>

@@ -15,6 +15,7 @@
     <color name="dark_grey_text">#FF2C3035</color>
     <color name="grey_text">#FF828796</color>
     <color name="grey_hint">#FFA9ABB7</color>
+    <color name="grey_stroke">#FFE8E9EC</color>
     <color name="grey_screen_background">#FFF6F6F9</color>
     <color name="grey_peculiarity_chip">#FFFBFBFC</color>
     <color name="transparent">#00FFFFFF</color>

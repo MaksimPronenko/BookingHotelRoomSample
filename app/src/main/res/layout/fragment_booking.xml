@@ -30,14 +30,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/scroll_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             android:orientation="vertical">
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/booking_frame"
                 android:layout_width="match_parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white">
 
@@ -74,6 +82,10 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <LinearLayout
+                android:id="@+id/hotel_frame"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/booking_frame"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -143,6 +155,9 @@
             </LinearLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/hotel_frame"
                 android:id="@+id/tour_data"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -161,7 +176,8 @@
                     android:textColor="@color/grey_text"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="TextContrastCheck" />
 
                 <TextView
                     android:id="@+id/departure"
@@ -190,7 +206,8 @@
                     android:textColor="@color/grey_text"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/departure_title" />
+                    app:layout_constraintTop_toBottomOf="@id/departure_title"
+                    tools:ignore="TextContrastCheck" />
 
                 <TextView
                     android:id="@+id/country_city"
@@ -229,7 +246,8 @@
                     android:textColor="@color/grey_text"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/country_city_data_barrier" />
+                    app:layout_constraintTop_toBottomOf="@id/country_city_data_barrier"
+                    tools:ignore="TextContrastCheck" />
 
                 <TextView
                     android:id="@+id/dates"
@@ -258,7 +276,8 @@
                     android:textColor="@color/grey_text"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/dates_title" />
+                    app:layout_constraintTop_toBottomOf="@id/dates_title"
+                    tools:ignore="TextContrastCheck" />
 
                 <TextView
                     android:id="@+id/number_of_nights"
@@ -287,7 +306,8 @@
                     android:textColor="@color/grey_text"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/number_of_nights_title" />
+                    app:layout_constraintTop_toBottomOf="@id/number_of_nights_title"
+                    tools:ignore="TextContrastCheck" />
 
                 <TextView
                     android:id="@+id/hotel"
@@ -326,7 +346,8 @@
                     android:textColor="@color/grey_text"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/hotel_data_barrier" />
+                    app:layout_constraintTop_toBottomOf="@id/hotel_data_barrier"
+                    tools:ignore="TextContrastCheck" />
 
                 <TextView
                     android:id="@+id/room"
@@ -366,7 +387,8 @@
                     android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/room_data_barrier" />
+                    app:layout_constraintTop_toBottomOf="@id/room_data_barrier"
+                    tools:ignore="TextContrastCheck" />
 
                 <TextView
                     android:id="@+id/nutrition"
@@ -389,6 +411,10 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <LinearLayout
+                android:id="@+id/buyers_data"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tour_data"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -440,7 +466,7 @@
                         android:maxLength="18"
                         android:textColor="@color/blue_dark_input_text"
                         android:textSize="16sp"
-                        tools:ignore="TouchTargetSizeCheck" />
+                        tools:ignore="TouchTargetSizeCheck,TextContrastCheck,VisualLintTextFieldSize" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -467,9 +493,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/sf_pro_display_regular"
+                        android:inputType="textEmailAddress"
                         android:textColor="@color/blue_dark_input_text"
                         android:textSize="16sp"
-                        tools:ignore="TouchTargetSizeCheck" />
+                        tools:ignore="TouchTargetSizeCheck,TextContrastCheck,VisualLintTextFieldSize" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -489,48 +516,160 @@
 
             </LinearLayout>
 
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/frame_background_rounded">
-
-                <TextView
-                    android:id="@+id/add_tourist"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="16dp"
-                    android:layout_marginVertical="16dp"
-                    android:fontFamily="@font/sf_pro_display_semibold"
-                    android:gravity="start"
-                    android:text="@string/add_tourist"
-                    android:textColor="@color/black"
-                    android:textSize="22sp" />
-
-                <androidx.constraintlayout.utils.widget.ImageFilterButton
-                    android:id="@+id/button_add_tourist"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:layout_gravity="center_vertical|end"
-                    android:layout_marginEnd="13dp"
-                    android:background="@drawable/button_rounded_6_background"
-                    android:backgroundTint="@color/blue"
-                    android:src="@drawable/plus"
-                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
-
-            </FrameLayout>
-
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/tourists_data_recycler"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginVertical="16dp"
+                android:layout_marginTop="48dp"
                 android:orientation="vertical"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/add_tourist_item" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/buyers_data"
+                tools:listitem="@layout/tourist_data_item" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/price_frame"
+                android:layout_marginTop="4dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tourists_data_recycler"
+                android:background="@drawable/frame_background_rounded">
+
+                <TextView
+                    android:id="@+id/tour_price_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/sf_pro_display_regular"
+                    android:gravity="start"
+                    android:text="@string/tour_price"
+                    android:textColor="@color/grey_text"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/tour_price"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tour_price"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:fontFamily="@font/sf_pro_display_regular"
+                    android:gravity="end"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tour_price_title"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/tour_price_title"
+                    app:layout_constraintTop_toTopOf="@+id/tour_price_title"
+                    tools:text="@tools:sample/cities" />
+
+                <TextView
+                    android:id="@+id/fuel_fee_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/sf_pro_display_regular"
+                    android:gravity="start"
+                    android:text="@string/fuel_fee"
+                    android:textColor="@color/grey_text"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/fuel_fee"
+                    app:layout_constraintTop_toBottomOf="@id/tour_price_title" />
+
+                <TextView
+                    android:id="@+id/fuel_fee"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:fontFamily="@font/sf_pro_display_regular"
+                    android:gravity="end"
+                    android:singleLine="false"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/fuel_fee_title"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/fuel_fee_title"
+                    app:layout_constraintTop_toTopOf="@+id/fuel_fee_title"
+                    tools:text="@tools:sample/cities" />
+
+                <TextView
+                    android:id="@+id/service_fee_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/sf_pro_display_regular"
+                    android:gravity="start"
+                    android:text="@string/service_fee"
+                    android:textColor="@color/grey_text"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/service_fee"
+                    app:layout_constraintTop_toBottomOf="@id/fuel_fee_title" />
+
+                <TextView
+                    android:id="@+id/service_fee"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:fontFamily="@font/sf_pro_display_regular"
+                    android:gravity="end"
+                    android:singleLine="false"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/service_fee_title"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/service_fee_title"
+                    app:layout_constraintTop_toTopOf="@+id/service_fee_title"
+                    tools:text="@tools:sample/cities" />
+
+                <TextView
+                    android:id="@+id/to_be_paid_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginVertical="16dp"
+                    android:fontFamily="@font/sf_pro_display_regular"
+                    android:gravity="start"
+                    android:text="@string/to_be_paid"
+                    android:textColor="@color/grey_text"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/to_be_paid"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/service_fee_title" />
+
+                <TextView
+                    android:id="@+id/to_be_paid"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:fontFamily="@font/sf_pro_display_bold"
+                    android:gravity="end"
+                    android:singleLine="false"
+                    android:textColor="@color/blue"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/to_be_paid_title"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/to_be_paid_title"
+                    app:layout_constraintTop_toTopOf="@+id/to_be_paid_title"
+                    tools:text="@tools:sample/cities" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <FrameLayout
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/price_frame"
+                android:id="@+id/pay_frame"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -551,7 +690,7 @@
 
             </FrameLayout>
 
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
 

@@ -3,13 +3,14 @@ package home.samples.bookinghotelroomsample.ui.apapters
 import android.annotation.SuppressLint
 import android.content.Context
 import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.view.isGone
-import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
+import com.google.android.material.textfield.TextInputLayout
 import home.samples.bookinghotelroomsample.R
 import home.samples.bookinghotelroomsample.databinding.AddTouristItemBinding
 import home.samples.bookinghotelroomsample.databinding.TouristDataItemBinding
@@ -89,15 +90,17 @@ class TouristsAdapter(
                     surname.isGone = true
                     birthDate.isGone = true
                     citizenship.isGone = true
-                    passportNumberEditText.isGone = true
-                    passportValidityPeriodEditText.isGone = true
+                    passportNumber.isGone = true
+                    passportValidityPeriod.isGone = true
+                    buttonHideOrShow.setImageDrawable(AppCompatResources.getDrawable(context, R.drawable.arrow_down))
                 } else {
                     firstName.isGone = false
                     surname.isGone = false
                     birthDate.isGone = false
                     citizenship.isGone = false
-                    passportNumberEditText.isGone = false
-                    passportValidityPeriodEditText.isGone = false
+                    passportNumber.isGone = false
+                    passportValidityPeriod.isGone = false
+                    buttonHideOrShow.setImageDrawable(AppCompatResources.getDrawable(context, R.drawable.arrow_up))
                 }
 
                 firstnameEditText.setText(item.firstName ?: "")
@@ -107,11 +110,101 @@ class TouristsAdapter(
                 passportNumberEditText.setText(item.passportNumber ?: "")
                 passportValidityPeriodEditText.setText(item.passportValidityPeriod ?: "")
 
+                handleEditFieldStatus(firstName, item.firstNameFieldStatus ?: true)
+                handleEditFieldStatus(surname, item.surnameFieldStatus ?: true)
+                handleEditFieldStatus(birthDate, item.birthDateFieldStatus ?: true)
+                handleEditFieldStatus(citizenship, item.citizenshipFieldStatus ?: true)
+                handleEditFieldStatus(passportNumber, item.passportNumberFieldStatus ?: true)
+                handleEditFieldStatus(passportValidityPeriod, item.passportValidityPeriodFieldStatus ?: true)
+
+//                handleTextChangedListener(firstnameEditText, item, position)
+//                handleTextChangedListener(surnameEditText, item, position)
+//                handleTextChangedListener(birthDateEditText, item, position)
+//                handleTextChangedListener(citizenshipEditText, item, position)
+//                handleTextChangedListener(passportNumberEditText, item, position)
+//                handleTextChangedListener(passportValidityPeriodEditText, item, position)
+
+                firstnameEditText.addTextChangedListener(object : TextWatcher {
+                    override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+                    override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+                    override fun afterTextChanged(s: Editable?) {
+                        item.firstName = s.toString()
+                        if (item.firstNameFieldStatus != null) {
+                            item.firstNameFieldStatus = !firstnameEditText.text.isNullOrBlank()
+                            handleEditFieldStatus(firstName, item.firstNameFieldStatus ?: true)
+                        }
+                        changeTouristData(holder.getBindingAdapterPosition(), item)
+                    }
+                })
+
+                surnameEditText.addTextChangedListener(object : TextWatcher {
+                    override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+                    override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+                    override fun afterTextChanged(s: Editable?) {
+                        item.surname = s.toString()
+                        if (item.surnameFieldStatus != null) {
+                            item.surnameFieldStatus = !surnameEditText.text.isNullOrBlank()
+                            handleEditFieldStatus(surname, item.surnameFieldStatus ?: true)
+                        }
+                        changeTouristData(holder.getBindingAdapterPosition(), item)
+                    }
+                })
+
+                birthDateEditText.addTextChangedListener(object : TextWatcher {
+                    override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+                    override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+                    override fun afterTextChanged(s: Editable?) {
+                        item.birthDate = s.toString()
+                        if (item.birthDateFieldStatus != null) {
+                            item.birthDateFieldStatus = !birthDateEditText.text.isNullOrBlank()
+                            handleEditFieldStatus(birthDate, item.birthDateFieldStatus ?: true)
+                        }
+                        changeTouristData(holder.getBindingAdapterPosition(), item)
+                    }
+                })
+
+                citizenshipEditText.addTextChangedListener(object : TextWatcher {
+                    override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+                    override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+                    override fun afterTextChanged(s: Editable?) {
+                        item.citizenship = s.toString()
+                        if (item.citizenshipFieldStatus != null) {
+                            item.citizenshipFieldStatus = !citizenshipEditText.text.isNullOrBlank()
+                            handleEditFieldStatus(citizenship, item.citizenshipFieldStatus ?: true)
+                        }
+                        changeTouristData(holder.getBindingAdapterPosition(), item)
+                    }
+                })
+
+                passportNumberEditText.addTextChangedListener(object : TextWatcher {
+                    override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+                    override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+                    override fun afterTextChanged(s: Editable?) {
+                        item.passportNumber = s.toString()
+                        if (item.passportNumberFieldStatus != null) {
+                            item.passportNumberFieldStatus = !passportNumberEditText.text.isNullOrBlank()
+                            handleEditFieldStatus(passportNumber, item.passportNumberFieldStatus ?: true)
+                        }
+                        changeTouristData(holder.getBindingAdapterPosition(), item)
+                    }
+                })
+
+                passportValidityPeriodEditText.addTextChangedListener(object : TextWatcher {
+                    override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+                    override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+                    override fun afterTextChanged(s: Editable?) {
+                        item.passportValidityPeriod = s.toString()
+                        if (item.passportValidityPeriodFieldStatus != null) {
+                            item.passportValidityPeriodFieldStatus = !passportValidityPeriodEditText.text.isNullOrBlank()
+                            handleEditFieldStatus(passportValidityPeriod, item.passportValidityPeriodFieldStatus ?: true)
+                        }
+                        changeTouristData(holder.getBindingAdapterPosition(), item)
+                    }
+                })
+
                 buttonHideOrShow.setOnClickListener {
-                    var itemNew = item
-                    itemNew.informationHidden = if(itemNew.informationHidden == true) false
-                    else true
-                    changeTouristData(position, itemNew)
+                    item.informationHidden = item.informationHidden != true
+                    changeTouristData(position, item)
                 }
             }
         }
@@ -123,6 +216,27 @@ class TouristsAdapter(
             }
         }
     }
+
+    private fun handleEditFieldStatus(textInputLayout: TextInputLayout, fieldStatus: Boolean) {
+        if (fieldStatus) textInputLayout.boxBackgroundColor =
+            context.getColor(R.color.grey_screen_background)
+        else textInputLayout.boxBackgroundColor =
+            context.getColor(R.color.error_background)
+    }
+
+//    private fun handleTextChangedListener(textInputEditText: TextInputEditText, tourist: Tourist, position: Int) {
+//        textInputEditText.addTextChangedListener(object : TextWatcher {
+//            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+//            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+//            override fun afterTextChanged(s: Editable?) {
+//                tourist.firstName = s.toString()
+//                if (tourist.firstNameFieldStatus != null) {
+//                    tourist.firstNameFieldStatus = !textInputEditText.text.isNullOrBlank()
+//                }
+//                changeTouristData(position, tourist)
+//            }
+//        })
+//    }
 }
 
 class TouristDataViewHolder(val binding: TouristDataItemBinding) :

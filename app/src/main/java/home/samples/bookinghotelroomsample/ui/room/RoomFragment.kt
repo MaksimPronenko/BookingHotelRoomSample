@@ -15,8 +15,8 @@ import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import home.samples.bookinghotelroomsample.R
 import home.samples.bookinghotelroomsample.databinding.FragmentRoomBinding
-import home.samples.bookinghotelroomsample.models.Room
 import home.samples.bookinghotelroomsample.ui.ViewModelState
+import home.samples.bookinghotelroomsample.ui.apapters.RoomAdapter
 import home.samples.bookinghotelroomsample.utils.ARG_HOTEL_NAME
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -28,10 +28,6 @@ private const val TAG = "RoomFragment"
 
 @AndroidEntryPoint
 class RoomFragment : Fragment() {
-
-//    companion object {
-//        fun newInstance() = RoomFragment()
-//    }
 
     @Inject
     lateinit var roomViewModelFactory: RoomViewModelFactory
@@ -48,7 +44,7 @@ class RoomFragment : Fragment() {
         val hotelName = arguments?.getString(ARG_HOTEL_NAME) ?: ""
         viewModel.hotelName = hotelName
 
-        roomAdapter = RoomAdapter(requireContext()) { room -> onRoomChosenClick(room) }
+        roomAdapter = RoomAdapter(requireContext()) { onRoomChosenClick() }
     }
 
     override fun onCreateView(
@@ -106,21 +102,7 @@ class RoomFragment : Fragment() {
         }
     }
 
-    private fun onRoomChosenClick(room: Room) {
-        val bundle =
-            Bundle().apply {
-//                putInt(
-//                    ARG_FILM_ID,
-//                    viewModel.filmId
-//                )
-//                putString(
-//                    ARG_CURRENT_IMAGE,
-//                    currentImage
-//                )
-            }
-        findNavController().navigate(
-            R.id.action_RoomFragment_to_BookingFragment,
-            bundle
-        )
+    private fun onRoomChosenClick() {
+        findNavController().navigate(R.id.action_RoomFragment_to_BookingFragment)
     }
 }

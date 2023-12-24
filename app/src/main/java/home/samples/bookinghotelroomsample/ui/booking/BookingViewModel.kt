@@ -57,6 +57,12 @@ class BookingViewModel(
     )
     private val _touristsChannel = Channel<List<Tourist>>()
     val touristsChannel = _touristsChannel.receiveAsFlow()
+    private var touristQuantity = 1
+
+    var tourPrice: String? = null
+    var fuelCharge: String? = null
+    var serviceCharge: String? = null
+    var sumToBePaid: String? = null
 
     fun loadBookingData() {
         Log.d(TAG, "loadRoomsListData() запущена")
@@ -69,6 +75,7 @@ class BookingViewModel(
 
             if (bookingData == null) _state.value = BookingVMState.Error
             else {
+                recalculatePrices()
                 _state.value = BookingVMState.Loaded(phoneNumberState ?: true, emailState ?: true)
                 _touristsChannel.send(element = tourists)
             }
@@ -97,7 +104,6 @@ class BookingViewModel(
             val touristsMutable = tourists.toMutableList()
             touristsMutable[position] = tourist
             tourists = touristsMutable.toList()
-            _touristsChannel.send(element = tourists)
         }
     }
 
@@ -122,7 +128,54 @@ class BookingViewModel(
                 )
             )
             tourists = touristsMutable.toList()
+            touristQuantity = tourists.size
+            recalculatePrices()
             _touristsChannel.send(element = tourists)
         }
+    }
+
+    private fun recalculatePrices() {
+        val tourPriceSum = bookingData!!.tour_price * touristQuantity
+        val fuelChargeSum = bookingData!!.fuel_charge * touristQuantity
+        val serviceChargeSum = bookingData!!.service_charge * touristQuantity
+        tourPrice = tourPriceSum.toString()
+        fuelCharge = fuelChargeSum.toString()
+        serviceCharge = serviceChargeSum.toString()
+        sumToBePaid = (tourPriceSum + fuelChargeSum + serviceChargeSum).toString()
+    }
+
+    fun checkTouristsData(): Boolean {
+        var status = true
+        tourists.forEach {
+            if (it.firstName.isNullOrBlank()) {
+                it.firstNameFieldStatus = false
+                status = false
+            }
+            if (it.surname.isNullOrBlank()) {
+                it.surnameFieldStatus = false
+                status = false
+            }
+            if (it.birthDate.isNullOrBlank()) {
+                it.birthDateFieldStatus = false
+                status = false
+            }
+            if (it.citizenship.isNullOrBlank()) {
+                it.citizenshipFieldStatus = false
+                status = false
+            }
+            if (it.passportNumber.isNullOrBlank()) {
+                it.passportNumberFieldStatus = false
+                status = false
+            }
+            if (it.passportValidityPeriod.isNullOrBlank()) {
+                it.passportValidityPeriodFieldStatus = false
+                status = false
+            }
+        }
+        if (phoneNumberState != true || emailState != true) status = false
+        viewModelScope.launch(Dispatchers.IO) {
+            _touristsChannel.send(element = tourists)
+        }
+        return status
     }
 }

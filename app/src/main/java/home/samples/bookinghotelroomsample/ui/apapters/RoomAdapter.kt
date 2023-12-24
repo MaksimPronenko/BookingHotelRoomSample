@@ -1,4 +1,4 @@
-package home.samples.bookinghotelroomsample.ui.room
+package home.samples.bookinghotelroomsample.ui.apapters
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -7,13 +7,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import home.samples.bookinghotelroomsample.databinding.RoomItemBinding
 import home.samples.bookinghotelroomsample.models.Room
-import home.samples.bookinghotelroomsample.ui.apapters.ImageAdapter
 import home.samples.bookinghotelroomsample.utils.Utils
 
 class RoomAdapter(
     val context: Context,
-    private val onClick: (Room) -> Unit
-): RecyclerView.Adapter<RoomViewHolder>() {
+    private val onClick: () -> Unit
+) : RecyclerView.Adapter<RoomViewHolder>() {
     private var data: List<Room> = emptyList()
 
     @SuppressLint("NotifyDataSetChanged")
@@ -49,10 +48,8 @@ class RoomAdapter(
                 pricePer.text = room.price_per
             }
         }
-        holder.binding.chooseRoom.setOnClickListener{
-            item?.let{
-                onClick(item)
-            }
+        holder.binding.chooseRoom.setOnClickListener {
+            onClick()
         }
     }
 }

@@ -38,5 +38,16 @@ class Utils{
                 else -> context.getString(R.string.rating_unknown)
             }
         }
+
+        fun getRatingNumberAndText(context: Context, ratingName: String?): String {
+            return when(ratingName) {
+                context.getString(R.string.minimum_comfort_level) -> "1 $ratingName"
+                        context.getString(R.string.satisfactory) -> "2 $ratingName"
+                        context.getString(R.string.good) -> "3 $ratingName"
+                        context.getString(R.string.great) -> "4 $ratingName"
+                        context.getString(R.string.excellent) -> "5 $ratingName"
+                else -> context.getString(R.string.rating_unknown)
+            }
+        }
     }
 }

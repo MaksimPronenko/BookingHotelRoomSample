@@ -21,6 +21,7 @@ import home.samples.bookinghotelroomsample.R
 import home.samples.bookinghotelroomsample.databinding.FragmentBookingBinding
 import home.samples.bookinghotelroomsample.ui.BookingVMState
 import home.samples.bookinghotelroomsample.ui.apapters.TouristsAdapter
+import home.samples.bookinghotelroomsample.utils.Utils
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -42,7 +43,12 @@ class BookingFragment : Fragment() {
         super.onCreate(savedInstanceState)
         touristsAdapter = TouristsAdapter(
             context = requireContext(),
-            changeTouristData = { position, tourist -> viewModel.changeTouristData(position, tourist) },
+            changeTouristData = { position, tourist ->
+                viewModel.changeTouristData(
+                    position,
+                    tourist
+                )
+            },
             addTourist = { viewModel.addTourist() }
         )
     }
@@ -63,8 +69,8 @@ class BookingFragment : Fragment() {
 
         binding.touristsDataRecycler.adapter = touristsAdapter
 
-        binding.pay.setOnClickListener {
-            findNavController().navigate(R.id.action_BookingFragment_to_PaymentFragment)
+        binding.backButton.setOnClickListener {
+            findNavController().popBackStack()
         }
 
         binding.phoneNumberEditText.addTextChangedListener(object : TextWatcher {
@@ -141,23 +147,13 @@ class BookingFragment : Fragment() {
 
             override fun afterTextChanged(s: Editable?) {
                 Log.d(TAG, "phoneNumberEditText - afterTextChanged(s) сработала. s = $s")
-                if (viewModel.phoneNumberState != null ) viewModel.handleEnteredPhoneNumber()
+                if (viewModel.phoneNumberState != null) viewModel.handleEnteredPhoneNumber()
             }
         })
 
         binding.phoneNumberEditText.onFocusChangeListener = OnFocusChangeListener { _, hasFocus ->
-            if (hasFocus) {
-                Toast.makeText(
-                    requireContext(),
-                    "Phone number editing in process",
-                    Toast.LENGTH_LONG
-                ).show()
-            } else {
-                Toast.makeText(requireContext(), "Phone number editing finished", Toast.LENGTH_LONG)
-                    .show()
-                if (viewModel.phoneNumberState == null ) viewModel.handleEnteredPhoneNumber()
-//                phoneNumberFieldRefresh(viewModel.phoneNumberState)
-            }
+            if (!hasFocus && viewModel.phoneNumberState == null)
+                viewModel.handleEnteredPhoneNumber()
         }
 
         binding.emailEditText.addTextChangedListener(object : TextWatcher {
@@ -167,39 +163,38 @@ class BookingFragment : Fragment() {
 
             override fun afterTextChanged(s: Editable?) {
                 Log.d(TAG, "emailEditText - afterTextChanged(s) сработала. s = $s")
-                if (viewModel.emailState != null ) viewModel.handleEnteredEmail(s.toString())
+                if (viewModel.emailState != null) viewModel.handleEnteredEmail(s.toString())
             }
         })
 
         binding.emailEditText.onFocusChangeListener = OnFocusChangeListener { _, hasFocus ->
-            if (hasFocus) {
-                Toast.makeText(requireContext(), "Email editing in process", Toast.LENGTH_LONG)
-                    .show()
-            } else {
-                Toast.makeText(requireContext(), "Email editing finished", Toast.LENGTH_LONG).show()
-                if (viewModel.emailState == null ) viewModel.handleEnteredEmail(binding.emailEditText.text.toString())
-//                phoneNumberFieldRefresh(viewModel.phoneNumberState)
-            }
+            if (!hasFocus && viewModel.emailState == null)
+                viewModel.handleEnteredEmail(binding.emailEditText.text.toString())
         }
 
-        viewLifecycleOwner.lifecycleScope
-            .launchWhenStarted {
+        viewLifecycleOwner.lifecycleScope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.touristsChannel.collect { tourists ->
                     touristsAdapter.setAdapterData(tourists)
                     Log.d(TAG, "Новый список коллекций: ${viewModel.tourists}")
+                    pricesRefresh()
                 }
             }
+        }
+
+        binding.pay.setOnClickListener {
+            if (viewModel.checkTouristsData()) {
+                findNavController().navigate(R.id.action_BookingFragment_to_PaymentFragment)
+            } else {
+                Toast.makeText(
+                    requireContext(),
+                    requireContext().getString(R.string.data_must_be_filled),
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+        }
 
         viewModelStatesProcessing()
-
-//        viewLifecycleOwner.lifecycleScope
-//            .launchWhenStarted {
-//                viewModel.phoneNumberStateChannel.collect {
-//                    Log.d(TAG, "Сработал phoneNumberStateChannel.collect")
-//                    fieldsStatesProcessing(it, viewModel.emailState)
-//                }
-//
-//            }
     }
 
     private fun viewModelStatesProcessing() {
@@ -221,8 +216,10 @@ class BookingFragment : Fragment() {
                                 binding.progress.isGone = true
                                 binding.scrollView.isGone = false
 
-                                binding.ratingText.text = viewModel.bookingData?.rating_name
-                                    ?: requireContext().getString(R.string.rating_unknown)
+                                binding.ratingText.text = Utils.getRatingNumberAndText(
+                                    requireContext(),
+                                    viewModel.bookingData?.rating_name
+                                )
                                 binding.hotelName.text =
                                     viewModel.bookingData?.hotel_name ?: requireContext().getString(
                                         R.string.name_unknown
@@ -247,7 +244,7 @@ class BookingFragment : Fragment() {
                                 binding.nutrition.text = viewModel.bookingData?.nutrition
                                     ?: requireContext().getString(R.string.unknown)
 
-//                                fieldsStatesProcessing(state.phoneNumberState, state.emailState)
+                                pricesRefresh()
                                 phoneNumberFieldRefresh(state.phoneNumberState)
                                 emailFieldRefresh(state.emailState)
                             }
@@ -275,13 +272,14 @@ class BookingFragment : Fragment() {
         else binding.email.boxBackgroundColor = requireContext().getColor(R.color.error_background)
     }
 
-//    private fun fieldsStatesProcessing(phoneNumberState: Boolean, emailState: Boolean) {
-//        if(phoneNumberState) binding.phoneNumber.boxBackgroundColor = requireContext().getColor(R.color.grey_screen_background)
-//        else binding.phoneNumber.boxBackgroundColor = requireContext().getColor(R.color.error_background)
-//
-//        if(emailState) binding.mail.boxBackgroundColor = requireContext().getColor(R.color.grey_screen_background)
-//        else binding.mail.boxBackgroundColor = requireContext().getColor(R.color.error_background)
-//    }
+    private fun pricesRefresh() {
+        binding.tourPrice.text = viewModel.tourPrice ?: requireContext().getString(R.string.unknown)
+        binding.fuelFee.text = viewModel.fuelCharge ?: requireContext().getString(R.string.unknown)
+        binding.serviceFee.text =
+            viewModel.serviceCharge ?: requireContext().getString(R.string.unknown)
+        binding.toBePaid.text =
+            viewModel.sumToBePaid ?: requireContext().getString(R.string.unknown)
+    }
 
     private fun getDates(start: String?, end: String?): String {
         return if (start != null && end != null) "$start - $end"
@@ -291,13 +289,5 @@ class BookingFragment : Fragment() {
     private fun getNightsNumberText(nights: Int?): String {
         return if (nights != null) "$nights ${requireContext().getString(R.string.of_nights)}"
         else requireContext().getString(R.string.unknown)
-    }
-
-    private fun hideOrShow() {
-
-    }
-
-    private fun addTourist() {
-
     }
 }
