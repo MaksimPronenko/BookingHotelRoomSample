@@ -15,9 +15,8 @@ import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import home.samples.bookinghotelroomsample.R
 import home.samples.bookinghotelroomsample.databinding.FragmentHotelBinding
-import home.samples.bookinghotelroomsample.ui.apapters.ImageAdapter
 import home.samples.bookinghotelroomsample.ui.ViewModelState
-import home.samples.bookinghotelroomsample.utils.ARG_HOTEL_NAME
+import home.samples.bookinghotelroomsample.ui.apapters.ImageAdapter
 import home.samples.bookinghotelroomsample.utils.Utils
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
