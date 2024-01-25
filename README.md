@@ -23,7 +23,7 @@
 Если все данные введены корректно, то при нажатии на кнопку оплаты происходит переход на экран подтверждения заказа.
 
 Разработал на основе технического задания и дизайн-макета в Figma:
-https://www.figma.com/file/MF3rG9GQdSkL8cVaGSpclJ/Android?type=design&node-id=0-1&mode=design&t=coTiOzG81xY1KGMB-0.
+[макет в Figma](https://www.figma.com/file/MF3rG9GQdSkL8cVaGSpclJ/Android?type=design&node-id=0-1&mode=design&t=coTiOzG81xY1KGMB-0).
 
 Использованные в проекте технологии:
 
