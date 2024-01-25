@@ -55,14 +55,7 @@ class HotelFragment : Fragment() {
         binding.hotelImagePager.adapter = hotelImageAdapter
 
         binding.toChoosingRoom.setOnClickListener {
-            val bundle =
-                Bundle().apply {
-                    putString(
-                        ARG_HOTEL_NAME,
-                        viewModel.name
-                    )
-                }
-            findNavController().navigate(R.id.action_HotelFragment_to_RoomFragment, bundle)
+            findNavController().navigate(R.id.action_HotelFragment_to_RoomFragment)
         }
 
         statesProcessing()
@@ -102,7 +95,7 @@ class HotelFragment : Fragment() {
                                 binding.description.text = viewModel.description
                             }
 
-                            ViewModelState.Error -> {
+                            else -> {
                                 binding.scrollView.isGone = true
                                 binding.progress.isGone = true
                             }

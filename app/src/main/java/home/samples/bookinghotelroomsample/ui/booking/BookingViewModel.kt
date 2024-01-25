@@ -7,7 +7,6 @@ import androidx.lifecycle.viewModelScope
 import home.samples.bookinghotelroomsample.data.Repository
 import home.samples.bookinghotelroomsample.models.BookingData
 import home.samples.bookinghotelroomsample.models.Tourist
-import home.samples.bookinghotelroomsample.ui.BookingVMState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -93,7 +92,7 @@ class BookingViewModel(
 
     fun handleEnteredEmail(email: String) {
         viewModelScope.launch {
-            emailState = email.isNotEmpty() && Patterns.EMAIL_ADDRESS.matcher(email).matches()
+            emailState = Patterns.EMAIL_ADDRESS.matcher(email).matches()
             Log.d(TAG, "handleEnteredEmail(): email = $email; emailState = $emailState")
             _state.value = BookingVMState.Loaded(phoneNumberState ?: true, emailState!!)
         }

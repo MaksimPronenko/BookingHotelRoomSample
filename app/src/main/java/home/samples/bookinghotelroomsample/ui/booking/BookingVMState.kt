@@ -1,4 +1,4 @@
-package home.samples.bookinghotelroomsample.ui
+package home.samples.bookinghotelroomsample.ui.booking
 
 sealed class BookingVMState {
     object Loading : BookingVMState()
