@@ -76,6 +76,7 @@ class BookingViewModel(
             else {
                 recalculatePrices()
                 _state.value = BookingVMState.Loaded(phoneNumberState ?: true, emailState ?: true)
+                Log.d(TAG, "Обновляем канал из loadBookingData()")
                 _touristsChannel.send(element = tourists)
             }
         }
@@ -99,10 +100,18 @@ class BookingViewModel(
     }
 
     fun changeTouristData(position: Int, tourist: Tourist) {
+        val touristsMutable = tourists.toMutableList()
+        touristsMutable[position] = tourist
+        tourists = touristsMutable.toList()
+    }
+
+    fun changeTouristDataVisibility(position: Int, tourist: Tourist) {
         viewModelScope.launch(Dispatchers.IO) {
             val touristsMutable = tourists.toMutableList()
             touristsMutable[position] = tourist
             tourists = touristsMutable.toList()
+            Log.d(TAG, "Обновляем канал из changeTouristDataVisibility($position, $tourist)")
+            _touristsChannel.send(element = tourists)
         }
     }
 
@@ -129,6 +138,7 @@ class BookingViewModel(
             tourists = touristsMutable.toList()
             touristQuantity = tourists.size
             recalculatePrices()
+            Log.d(TAG, "Обновляем канал из addTourist()")
             _touristsChannel.send(element = tourists)
         }
     }
@@ -173,6 +183,7 @@ class BookingViewModel(
         }
         if (phoneNumberState != true || emailState != true) status = false
         viewModelScope.launch(Dispatchers.IO) {
+            Log.d(TAG, "Обновляем канал из checkTouristsData()")
             _touristsChannel.send(element = tourists)
         }
         return status

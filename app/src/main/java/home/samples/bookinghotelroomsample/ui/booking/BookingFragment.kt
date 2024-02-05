@@ -48,6 +48,12 @@ class BookingFragment : Fragment() {
                     tourist
                 )
             },
+            changeTouristDataVisibility = { position, tourist ->
+                viewModel.changeTouristDataVisibility(
+                    position,
+                    tourist
+                )
+            },
             addTourist = { viewModel.addTourist() }
         )
     }

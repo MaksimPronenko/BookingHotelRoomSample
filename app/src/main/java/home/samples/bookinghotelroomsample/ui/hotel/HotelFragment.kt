@@ -54,7 +54,14 @@ class HotelFragment : Fragment() {
         binding.hotelImagePager.adapter = hotelImageAdapter
 
         binding.toChoosingRoom.setOnClickListener {
-            findNavController().navigate(R.id.action_HotelFragment_to_RoomFragment)
+            val bundle = Bundle().apply {
+                putString("hotelName", viewModel.name)
+            }
+
+            findNavController().navigate(
+                R.id.action_HotelFragment_to_RoomFragment,
+                bundle
+            )
         }
 
         statesProcessing()
@@ -80,15 +87,22 @@ class HotelFragment : Fragment() {
                                     hotelImageAdapter.setData(it)
                                 }.launchIn(viewLifecycleOwner.lifecycleScope)
 
-                                binding.ratingText.text = Utils.getRatingText(requireContext(), viewModel.rating)
+                                binding.ratingText.text =
+                                    Utils.getRatingText(requireContext(), viewModel.rating)
                                 binding.hotelName.text = viewModel.name
                                 binding.hotelAddress.text = viewModel.address
-                                binding.minimalPrice.text = viewModel.getMinimalPriceText(requireContext())
+                                binding.minimalPrice.text =
+                                    viewModel.getMinimalPriceText(requireContext())
                                 binding.priceForIt.text = viewModel.getPriceForIt()
 
                                 viewModel.peculiarities?.forEach {
                                     Log.d(TAG, "Создаём чип с текстом: $it")
-                                    binding.peculiaritiesGroup.addView(Utils.createPeculiarityChip(requireContext(), it))
+                                    binding.peculiaritiesGroup.addView(
+                                        Utils.createPeculiarityChip(
+                                            requireContext(),
+                                            it
+                                        )
+                                    )
                                 }
 
                                 binding.description.text = viewModel.description

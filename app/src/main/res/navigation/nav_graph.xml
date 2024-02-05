@@ -20,7 +20,10 @@
         android:id="@+id/RoomFragment"
         android:name="home.samples.bookinghotelroomsample.ui.room.RoomFragment"
         tools:layout="@layout/fragment_room">
-
+        <argument
+            android:name="hotelName"
+            android:defaultValue=""
+            app:argType="string" />
         <action
             android:id="@+id/action_RoomFragment_to_BookingFragment"
             app:destination="@id/BookingFragment" />

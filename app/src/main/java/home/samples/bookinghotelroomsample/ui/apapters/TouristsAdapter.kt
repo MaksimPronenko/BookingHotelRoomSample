@@ -25,6 +25,7 @@ const val VIEW_TYPE_ADD_TOURIST = 1
 class TouristsAdapter(
     val context: Context,
     private val changeTouristData: (Int, Tourist) -> Unit,
+    private val changeTouristDataVisibility: (Int, Tourist) -> Unit,
     private val addTourist: () -> Unit
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     var data: List<RecyclerItem> = listOf()
@@ -85,21 +86,16 @@ class TouristsAdapter(
                 } + " ${context.getString(R.string.tourist)}"
                 touristTitle.text = touristNumberText
 
-                if (item.informationHidden == true) {
-                    firstName.isGone = true
-                    surname.isGone = true
-                    birthDate.isGone = true
-                    citizenship.isGone = true
-                    passportNumber.isGone = true
-                    passportValidityPeriod.isGone = true
+                val itemHidden = item.informationHidden == true
+                firstName.isGone = itemHidden
+                surname.isGone = itemHidden
+                birthDate.isGone = itemHidden
+                citizenship.isGone = itemHidden
+                passportNumber.isGone = itemHidden
+                passportValidityPeriod.isGone = itemHidden
+                if (itemHidden) {
                     buttonHideOrShow.setImageDrawable(AppCompatResources.getDrawable(context, R.drawable.arrow_down))
                 } else {
-                    firstName.isGone = false
-                    surname.isGone = false
-                    birthDate.isGone = false
-                    citizenship.isGone = false
-                    passportNumber.isGone = false
-                    passportValidityPeriod.isGone = false
                     buttonHideOrShow.setImageDrawable(AppCompatResources.getDrawable(context, R.drawable.arrow_up))
                 }
 
@@ -117,23 +113,19 @@ class TouristsAdapter(
                 handleEditFieldStatus(passportNumber, item.passportNumberFieldStatus ?: true)
                 handleEditFieldStatus(passportValidityPeriod, item.passportValidityPeriodFieldStatus ?: true)
 
-//                handleTextChangedListener(firstnameEditText, item, position)
-//                handleTextChangedListener(surnameEditText, item, position)
-//                handleTextChangedListener(birthDateEditText, item, position)
-//                handleTextChangedListener(citizenshipEditText, item, position)
-//                handleTextChangedListener(passportNumberEditText, item, position)
-//                handleTextChangedListener(passportValidityPeriodEditText, item, position)
-
                 firstnameEditText.addTextChangedListener(object : TextWatcher {
                     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
                     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
                     override fun afterTextChanged(s: Editable?) {
-                        item.firstName = s.toString()
-                        if (item.firstNameFieldStatus != null) {
-                            item.firstNameFieldStatus = !firstnameEditText.text.isNullOrBlank()
-                            handleEditFieldStatus(firstName, item.firstNameFieldStatus ?: true)
+                        val newText = s.toString()
+                        if (newText != item.firstName) {
+                            item.firstName = newText
+                            if (item.firstNameFieldStatus != null) {
+                                item.firstNameFieldStatus = !firstnameEditText.text.isNullOrBlank()
+                                handleEditFieldStatus(firstName, item.firstNameFieldStatus!!)
+                            }
+                            changeTouristData(holder.getBindingAdapterPosition(), item)
                         }
-                        changeTouristData(holder.getBindingAdapterPosition(), item)
                     }
                 })
 
@@ -141,12 +133,15 @@ class TouristsAdapter(
                     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
                     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
                     override fun afterTextChanged(s: Editable?) {
-                        item.surname = s.toString()
-                        if (item.surnameFieldStatus != null) {
-                            item.surnameFieldStatus = !surnameEditText.text.isNullOrBlank()
-                            handleEditFieldStatus(surname, item.surnameFieldStatus ?: true)
+                        val newText = s.toString()
+                        if (newText != item.surname) {
+                            item.surname = newText
+                            if (item.surnameFieldStatus != null) {
+                                item.surnameFieldStatus = !surnameEditText.text.isNullOrBlank()
+                                handleEditFieldStatus(surname, item.surnameFieldStatus!!)
+                            }
+                            changeTouristData(holder.getBindingAdapterPosition(), item)
                         }
-                        changeTouristData(holder.getBindingAdapterPosition(), item)
                     }
                 })
 
@@ -154,12 +149,15 @@ class TouristsAdapter(
                     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
                     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
                     override fun afterTextChanged(s: Editable?) {
-                        item.birthDate = s.toString()
-                        if (item.birthDateFieldStatus != null) {
-                            item.birthDateFieldStatus = !birthDateEditText.text.isNullOrBlank()
-                            handleEditFieldStatus(birthDate, item.birthDateFieldStatus ?: true)
+                        val newText = s.toString()
+                        if (newText != item.birthDate) {
+                            item.birthDate = newText
+                            if (item.birthDateFieldStatus != null) {
+                                item.birthDateFieldStatus = !birthDateEditText.text.isNullOrBlank()
+                                handleEditFieldStatus(birthDate, item.birthDateFieldStatus!!)
+                            }
+                            changeTouristData(holder.getBindingAdapterPosition(), item)
                         }
-                        changeTouristData(holder.getBindingAdapterPosition(), item)
                     }
                 })
 
@@ -167,12 +165,19 @@ class TouristsAdapter(
                     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
                     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
                     override fun afterTextChanged(s: Editable?) {
-                        item.citizenship = s.toString()
-                        if (item.citizenshipFieldStatus != null) {
-                            item.citizenshipFieldStatus = !citizenshipEditText.text.isNullOrBlank()
-                            handleEditFieldStatus(citizenship, item.citizenshipFieldStatus ?: true)
+                        val newText = s.toString()
+                        if (newText != item.citizenship) {
+                            item.citizenship = newText
+                            if (item.citizenshipFieldStatus != null) {
+                                item.citizenshipFieldStatus =
+                                    !citizenshipEditText.text.isNullOrBlank()
+                                handleEditFieldStatus(
+                                    citizenship,
+                                    item.citizenshipFieldStatus!!
+                                )
+                            }
+                            changeTouristData(holder.getBindingAdapterPosition(), item)
                         }
-                        changeTouristData(holder.getBindingAdapterPosition(), item)
                     }
                 })
 
@@ -180,12 +185,19 @@ class TouristsAdapter(
                     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
                     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
                     override fun afterTextChanged(s: Editable?) {
-                        item.passportNumber = s.toString()
-                        if (item.passportNumberFieldStatus != null) {
-                            item.passportNumberFieldStatus = !passportNumberEditText.text.isNullOrBlank()
-                            handleEditFieldStatus(passportNumber, item.passportNumberFieldStatus ?: true)
+                        val newText = s.toString()
+                        if (newText != item.passportNumber) {
+                            item.passportNumber = newText
+                            if (item.passportNumberFieldStatus != null) {
+                                item.passportNumberFieldStatus =
+                                    !passportNumberEditText.text.isNullOrBlank()
+                                handleEditFieldStatus(
+                                    passportNumber,
+                                    item.passportNumberFieldStatus!!
+                                )
+                            }
+                            changeTouristData(holder.getBindingAdapterPosition(), item)
                         }
-                        changeTouristData(holder.getBindingAdapterPosition(), item)
                     }
                 })
 
@@ -193,18 +205,25 @@ class TouristsAdapter(
                     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
                     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
                     override fun afterTextChanged(s: Editable?) {
-                        item.passportValidityPeriod = s.toString()
-                        if (item.passportValidityPeriodFieldStatus != null) {
-                            item.passportValidityPeriodFieldStatus = !passportValidityPeriodEditText.text.isNullOrBlank()
-                            handleEditFieldStatus(passportValidityPeriod, item.passportValidityPeriodFieldStatus ?: true)
+                        val newText = s.toString()
+                        if (newText != item.passportNumber) {
+                            item.passportValidityPeriod = newText
+                            if (item.passportValidityPeriodFieldStatus != null) {
+                                item.passportValidityPeriodFieldStatus =
+                                    !passportValidityPeriodEditText.text.isNullOrBlank()
+                                handleEditFieldStatus(
+                                    passportValidityPeriod,
+                                    item.passportValidityPeriodFieldStatus!!
+                                )
+                            }
+                            changeTouristData(holder.getBindingAdapterPosition(), item)
                         }
-                        changeTouristData(holder.getBindingAdapterPosition(), item)
                     }
                 })
 
                 buttonHideOrShow.setOnClickListener {
                     item.informationHidden = item.informationHidden != true
-                    changeTouristData(position, item)
+                    changeTouristDataVisibility(holder.getBindingAdapterPosition(), item)
                 }
             }
         }
@@ -223,20 +242,6 @@ class TouristsAdapter(
         else textInputLayout.boxBackgroundColor =
             context.getColor(R.color.error_background)
     }
-
-//    private fun handleTextChangedListener(textInputEditText: TextInputEditText, tourist: Tourist, position: Int) {
-//        textInputEditText.addTextChangedListener(object : TextWatcher {
-//            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-//            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
-//            override fun afterTextChanged(s: Editable?) {
-//                tourist.firstName = s.toString()
-//                if (tourist.firstNameFieldStatus != null) {
-//                    tourist.firstNameFieldStatus = !textInputEditText.text.isNullOrBlank()
-//                }
-//                changeTouristData(position, tourist)
-//            }
-//        })
-//    }
 }
 
 class TouristDataViewHolder(val binding: TouristDataItemBinding) :
